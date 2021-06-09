@@ -1,0 +1,10 @@
+# project builds.
+build/*
+
+# project's workspace related. 
+tags
+compile_commands.json
+.cache/*
+
+*.swo
+*.swp
