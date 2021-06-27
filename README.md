@@ -1,7 +1,8 @@
 # Phyllanthus Emblica
-<img align="center" width="75" height="75" src="imgs/logo/logo.ico">
+<img align="right" width="75" height="75" src="imgs/logo/logo.ico">
 
-### This project is a collection of real world interview problems and is intended for knowledge enrichment of aspirants. The Author strongly **discourages plagarism**.
+## Collection of real world interview problems intended for knowledge enrichment of aspirants. The Author strongly **discourages plagarism**. [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
+
 
 - ### [Goldman Sachs](https://www.goldmansachs.com/) 
     > The problem was to find the root node of the largest tree (with the larges number of nodes) in a forest. More info about the problem can be found in the following images.
@@ -25,7 +26,7 @@
     1. [trc_1a](imgs/trc/market_parser/14_MarketDataParsing.jpeg)
     2. [trc_1b](imgs/trc/market_parser/14_MarketDataParsing2.jpeg)
     3. [trc_1c](imgs/trc/market_parser/14_MarketDataParsing3.jpeg)
-        - [solution](tower_research_capital/trc_parser.cpp)
+        - [solution](tower_research_capital/order_trade_feed_parser.cpp)
 
 - ### [LHFT's](https://www.lhft.io/) problem statement:
 
