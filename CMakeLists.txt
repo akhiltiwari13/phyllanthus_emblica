@@ -18,4 +18,5 @@ add_subdirectory(jump_trading)
 add_subdirectory(goldman_sachs)
 add_subdirectory(lhft)
 add_subdirectory(tower_research_capital)
+add_subdirectory(optiver)
 

@@ -1,7 +1,7 @@
 # Phyllanthus Emblica
-<img align="right" width="75" height="75" src="logo/logo.ico">
+<img align="center" width="75" height="75" src="imgs/logo/logo.ico">
 
-### This project is a collection of my solutions to interview problems that I have encountered. If a problem ends up here, it should imply: I could not get it done when I was supposed to. :sweat_smile:
+### This project is a collection of real world interview problems and is intended for knowledge enrichment of aspirants. The Author strongly **discourages plagarism**.
 
 - ### [Goldman Sachs](https://www.goldmansachs.com/) 
     > The problem was to find the root node of the largest tree (with the larges number of nodes) in a forest. More info about the problem can be found in the following images.
@@ -11,10 +11,21 @@
 
 [Solution](goldman_sachs/largestTreeinForest.cpp) 
 
+- ### [Optiver](https://www.optiver.com/) 
+    > An unusually relaxed hackerrank test of 48 hr duration, comprising of 3 programing questions (easy, medium & hard respectively) and 5 multiple choice questions. The test should generally take between 6 to 8 hours to solve.
+    1. [optiver programming question hard]()
+
 - ### [jumpTrading](https://www.jumptrading.com/) 
     > The problem was to implement a file iterator that parses numerical data. More info about the problem can be found in the images below.
-    1. [jumpTrading_1](img/jump_trading/Jump1_1.png)
-    2. [jumpTrading_2](img/jump_trading/Jump1_2.png)
+    1. [jumpTrading_1](imgs/jump_trading/Jump1_1.png)
+    2. [jumpTrading_2](imgs/jump_trading/Jump1_2.png)
+
+- ### [Tower Research Capital](https://www.tower-research.com/) 
+    > Following is a collection of set of problems encountered during TRC's interviews.
+    1. [trc_1a](imgs/trc/market_parser/14_MarketDataParsing.jpeg)
+    2. [trc_1b](imgs/trc/market_parser/14_MarketDataParsing2.jpeg)
+    3. [trc_1c](imgs/trc/market_parser/14_MarketDataParsing3.jpeg)
+        - [solution](tower_research_capital/trc_parser.cpp)
 
 - ### [LHFT's](https://www.lhft.io/) problem statement:
 
