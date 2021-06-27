@@ -6,5 +6,6 @@ tags
 compile_commands.json
 .cache/*
 
+Session.vim
 *.swo
 *.swp
