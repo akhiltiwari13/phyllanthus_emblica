@@ -1,16 +1,14 @@
 # Phyllanthus Emblica
 <img align="right" width="75" height="75" src="imgs/logo/logo.ico">
 
-## Collection of real world interview problems intended for knowledge enrichment of aspirants. The Author strongly **discourages plagarism**. [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
-
+## Collection of real world interview problems intended for knowledge enrichment of aspirants. The Author strongly **discourages plagarism**. Implementation tries to conform to [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
 
 - ### [Goldman Sachs](https://www.goldmansachs.com/) 
     > The problem was to find the root node of the largest tree (with the larges number of nodes) in a forest. More info about the problem can be found in the following images.
     1. [gs1](img/goldman_sachs/cpad_1/gs_largestForest0.png)
     2. [gs2](img/goldman_sachs/cpad_1/gs_largestForest1.png)
     3. [gs3](img/goldman_sachs/cpad_1/gs_largestForest2.png)
-
-[Solution](goldman_sachs/largestTreeinForest.cpp) 
+        - [Solution](goldman_sachs/largestTreeinForest.cpp) 
 
 - ### [Optiver](https://www.optiver.com/) 
     > An unusually relaxed hackerrank test of 48 hr duration, comprising of 3 programing questions (easy, medium & hard respectively) and 5 multiple choice questions. The test should generally take between 6 to 8 hours to solve.
@@ -27,6 +25,12 @@
     2. [trc_1b](imgs/trc/market_parser/14_MarketDataParsing2.jpeg)
     3. [trc_1c](imgs/trc/market_parser/14_MarketDataParsing3.jpeg)
         - [solution](tower_research_capital/order_trade_feed_parser.cpp)
+
+    4. [trc_2a](imgs/trc/market_parser/14_MarketDataParsing.jpeg)
+    5. [trc_2b](imgs/trc/market_parser/14_MarketDataParsing2.jpeg)
+    6. [trc_2c](imgs/trc/market_parser/14_MarketDataParsing3.jpeg)
+        - [solution](tower_research_capital/order_trade_feed_parser.cpp)
+
 
 - ### [LHFT's](https://www.lhft.io/) problem statement:
 
