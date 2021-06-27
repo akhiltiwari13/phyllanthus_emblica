@@ -16,5 +16,6 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 # add_subdirectory(libraries)
 add_subdirectory(jump_trading)
 add_subdirectory(goldman_sachs)
-# add_subdirectory(lhft)
+add_subdirectory(lhft)
+add_subdirectory(tower_research_capital)
 
