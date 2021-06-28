@@ -12,7 +12,10 @@
 
 - ### [Optiver](https://www.optiver.com/) 
     > An unusually relaxed hackerrank test of 48 hr duration, comprising of 3 programing questions (easy, medium & hard respectively) and 5 multiple choice questions. The test should generally take between 6 to 8 hours to solve.
-    1. [optiver programming question hard]()
+    1. [optv1a](imgs/optiver/code_graph_traversal0.png)
+    2. [optv1b](imgs/optiver/code_graph_traversal1.png)
+    3. [optv1c](imgs/optiver/code_graph_traversal2.png)
+    4. [optv1d](imgs/optiver/code_graph_traversal3.png)
 
 - ### [jumpTrading](https://www.jumptrading.com/) 
     > The problem was to implement a file iterator that parses numerical data. More info about the problem can be found in the images below.
@@ -26,10 +29,9 @@
     3. [trc_1c](imgs/trc/market_parser/14_MarketDataParsing3.jpeg)
         - [solution](tower_research_capital/order_trade_feed_parser.cpp)
 
-    4. [trc_2a](imgs/trc/market_parser/14_MarketDataParsing.jpeg)
-    5. [trc_2b](imgs/trc/market_parser/14_MarketDataParsing2.jpeg)
-    6. [trc_2c](imgs/trc/market_parser/14_MarketDataParsing3.jpeg)
-        - [solution](tower_research_capital/order_trade_feed_parser.cpp)
+    5. [trc_2a](imgs/trc/road_network/10RoadNetwork01.png)
+    6. [trc_2b](imgs/trc/road_network/10RoadNetwork02.png)
+        - [solution](tower_research_capital/road_network.cpp)
 
 
 - ### [LHFT's](https://www.lhft.io/) problem statement:
