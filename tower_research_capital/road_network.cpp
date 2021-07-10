@@ -98,7 +98,32 @@ edge ProposalQuantifier(const set<edge> &road_edge_list,
   return best_proposal;
 }
 
+    /* bool doTestsPass(){ */
+    /*     std::set<edge> testCases={ */
+    /*     /1* sample test cases. *1/ */
+    /* }; */
+    /* bool passed = true; */
+    /* for(unsigned int ii =0 ; ii< testCases.size(); ++ii){ */
+    /*     int actual = largestTree(testCases[ii].first); */
+    /*     if(actual != testCases[ii].second){ */
+    /*         passed = false; */
+    /*         std::cout << "Failed for case" << ii << ", expected "<< testCases[ii].second<< ", actual "<< actual <<std::endl; */
+    /*     } */
+    /* } */
+    /* return passed; */
+/* } */
+
 int main() {
+    /* run the tests. */
+    /* if(doTestsPass()){ */
+    /*     std::cout<< "ALL TESTS PASS." << std::endl; */
+    /* } */
+    /* else{ */
+    /*     std::cout<< "TESTS FAILED."<<std::endl; */
+    /* } */
+
+    /* @TODO:- Replace the program to take hard-coded test cases instead of reading from a filei.e the GOLDMAN SACHS way!! */
+  /* move the input files to the same directory as the binary. */
   vector<string> input_files{"rn_input1.txt", "rn_input2.txt"};
 
   for (auto file : input_files) {
