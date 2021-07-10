@@ -41,7 +41,6 @@ void FloydWarshall(vector<vector<unsigned int>> &distance_matrix,
 edge ProposalQuantifier(const set<edge> &road_edge_list,
                         const set<edge> &proposal_edge_list,
                         unsigned int num_city) {
-  edge best_proposal;
 
   /* create an adjacency matrix to run Floyd-Warshall's algorithm on. */
   vector<vector<unsigned int>> distance_matrix(
@@ -70,6 +69,31 @@ edge ProposalQuantifier(const set<edge> &road_edge_list,
   cout << "] ";
 
   FloydWarshall(distance_matrix, num_city);
+  edge best_proposal;
+  unsigned int total_travel_time_saved = 0;
+
+  for (auto p : proposal_edge_list) {
+    unsigned int travel_time_saved = 0;
+    /* go through each proposal and find the best one. */
+    /* for each proposal p, go through the FW matrix and check how much total
+     * distance gets saved. */
+    for (unsigned int i = 0; i < num_city; ++i) {
+      for (unsigned int j = 0; j < num_city; ++j) {
+        auto currDist = distance_matrix[i][j];
+        auto shorterDist =
+            std::min(currDist, distance_matrix[i][get<0>(p)] + get<2>(p) +
+                                   distance_matrix[j][get<1>(p)]);
+        travel_time_saved += currDist - shorterDist;
+      }
+    }
+
+    if (travel_time_saved > total_travel_time_saved) {
+      /* update the best proposal & total_time_saved when a shorter path is
+       * found! */
+      total_travel_time_saved = travel_time_saved;
+      best_proposal = p;
+    }
+  }
 
   return best_proposal;
 }
