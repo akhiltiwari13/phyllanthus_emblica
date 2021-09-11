@@ -1,0 +1,2 @@
+[{"timeStamp":1234567890,"id":1,"eventType":"EDIT","eventValue":{"totalBudget":12345, "cost":1, "camapign_id": "c1"}}, {"timeStamp":1234567891, "id":2, "eventType":"VIEW", "eventValue":{"count":10}}]
+

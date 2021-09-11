@@ -1,0 +1,51 @@
+CAPPING SYSTEM
+Duration : 120 Min
+Problem Statement - 
+Consider a budget capping system for ads, with the below requirements:
+Set of campaigns have been set up for serving ads. 
+Each view of an ad has a cost associated with it. 
+Each campaign can have a limited amount of budget associated with it.
+There will be a set of events coming in stream. Events could be of types : 
+EDIT - campaign creation/modification
+SERVED - an ad was served for a request
+VIEWED - the ad was viewed by the end-user
+Build a budget capping application. Have an event listener which consumes these events in a sequence and makes a decision on whether a campaign’s budget is exhausted or still left. Print the statements if there is a change in the campaign status.
+
+Input -
+Sample event files for each event type.
+Input file format :
+<TimeStamp Id EventType EventValue>
+TimeStamp - When event is originated
+Id - Unique Identifier
+EventType - Served / Viewed / Edit
+Event Value - Json Payload Ex -
+It will be “count” in case of view / served ({“count”: 10, campaignid:””})
+It will be a “json payload” in case of an Edit event. ( {“totalBudget”:12345, “cost”:1, “camapign_id”: “uuid”} )
+budget - Total budget allocated to campaign
+cost - Cost per view
+
+Event 1 - {timeStamp:1234567890, id:uuid, eventType:”EDIT”, eventValue:{“totalBudget”:12345, “cost”:1, “camapign_id”: “uuid”}}
+Event 2 - {timeStamp:1234567891, id:uuid, eventType:”VIEW”, eventValue:{count:10, campaignid:””}}
+
+Output - 
+Campaign 1 Live [When 1st Campaign Created]
+Campaign 2 Live [When 2st Campaign Created]
+Campaign 2 Exhausted [When 2st Campaign Exhausted]
+Campaign 1 Exhausted [When 1st Campaign Exhausted]
+Campaign 1 Live [When 1st Campaign Edited - added more budget]
+
+Bonus - 
+Time based budget limit. 
+Hourly, Daily, Weekly Budget Limits
+{“totalBudget”:12345, “cost”:1, “camapign_id”: “uuid”, dailyBudgetLimit: 100}
+{“totalBudget”:12345, “cost”:1, “camapign_id”: “uuid”, budgetLimitType: “WEEKLY”, budgetLimit: 1000} 
+Providing audit history of an entity with some specified interval.
+Validate the view Events based on served events.
+
+Evaluation Criteria -
+Functional completeness, Readable and well-designed code
+Code fluency with concurrency handling
+Interfaces & Component modelling with Test case writing
+NFR related constructs
+Extensibility, Modularity, Problem Solving, HLD
+
