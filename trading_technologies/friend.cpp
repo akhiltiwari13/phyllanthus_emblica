@@ -17,24 +17,21 @@ public:
   }
 
   bool canBeConnected(Friend *target) {
-    /* if(this->friends.find(target) != end(friends)) */
+    bool rslt = false;
     if (this == target) {
       return true;
-    }
-    if (this->isNeighbour(target))
+    } else if (this->isNeighbour(target))
       return true;
     else {
       std::unordered_set<Friend *> visited;
-        visited.emplace(this);
-        for (auto v : this->friends) {
-          if(v->canBeConnected(target)) 
-          {
-              return true;
-          }
-          else{
-              return false;
-          }
-        }
+      visited.emplace(this);
+      for (auto v : this->friends) {
+        if (visited.count(v))
+          continue;
+        visited.emplace(v);
+        rslt = v->canBeConnected(target);
+      }
+      return rslt;
     }
   }
 
