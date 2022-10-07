@@ -9,3 +9,8 @@ compile_commands.json
 Session.vim
 *.swo
 *.swp
+
+*.vscode*
+
+# mac specific files
+*.DS_Store*
