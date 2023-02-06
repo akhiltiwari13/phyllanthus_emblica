@@ -1,0 +1,1 @@
+add_executable(suffix_query suffixQueries.cpp)

@@ -7,4 +7,4 @@ message(STATUS "preubild test message")
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(solve solve.cpp)
-add_executable(solve1 solve1.cpp)
+# add_executable(solve1 solve1.cpp)

@@ -20,5 +20,6 @@ add_subdirectory(lhft)
 add_subdirectory(tower_research_capital)
 add_subdirectory(optiver)
 add_subdirectory(trading_technologies)
-add_subdirectory(stan_chart)
-
+add_subdirectory(standard_chartered)
+add_subdirectory(squarepoint_capital)
+add_subdirectory(edgeverve)
