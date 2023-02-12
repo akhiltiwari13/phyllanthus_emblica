@@ -1,0 +1,1 @@
+add_executable(find_scrambled find_scrambled.cpp)

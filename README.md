@@ -1,19 +1,24 @@
 # Phyllanthus Emblica
 <img align="right" width="75" height="75" src="imgs/logo/logo.ico">
 
-## Collection of real world interview problems intended for knowledge enrichment of aspirants. The Author strongly **discourages plagarism**. Implementation tries to conform to [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
+## brief:
+     Collection of interview coding assignments. The Author strongly **discourages plagarism**. The solutions are implemented in C++ and *tries to conform to [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
 
-##@TODO- ADD BUILD INSTRUCTIONS.
+## build instruction
+    This project uses cmake as build files generator & can be build as follows.
+    - mkdir <build> //create a build directory to save all the binaries.
+    - cd <build> && cmake ..
+    - make  
 
 - ### [Goldman Sachs](https://www.goldmansachs.com/) 
     > The problem was to find the root node of the largest tree (with the larges number of nodes) in a forest. More info about the problem can be found in the following images.
-    1. [gs1](img/goldman_sachs/cpad_1/gs_largestForest0.png)
-    2. [gs2](img/goldman_sachs/cpad_1/gs_largestForest1.png)
-    3. [gs3](img/goldman_sachs/cpad_1/gs_largestForest2.png)
+    1. [gs1](imgs/goldman_sachs/cpad_1/gs_largestForest0.png)
+    2. [gs2](imgs/goldman_sachs/cpad_1/gs_largestForest1.png)
+    3. [gs3](imgs/goldman_sachs/cpad_1/gs_largestForest2.png)
         - [Solution](goldman_sachs/largestTreeinForest.cpp) 
 
 - ### [Optiver](https://www.optiver.com/) 
-    > An unusually relaxed hackerrank test of 48 hr duration, comprising of 3 programing questions (easy, medium & hard respectively) and 5 multiple choice questions. The test should generally take between 6 to 8 hours to solve.
+    > An unusually relaxed hackerrank test (with a duration of 48 hrs) comprising of 3 programing questions (easy, medium & hard) and 5 multiple choice questions. The problems had hidden testcases which had to be passed. The test should generally take between 6 to 8 hours to solve. 
     1. [optv1a](imgs/optiver/code_graph_traversal0.png)
     2. [optv1b](imgs/optiver/code_graph_traversal1.png)
     3. [optv1c](imgs/optiver/code_graph_traversal2.png)
@@ -256,3 +261,13 @@ For example:
 Bonus points: testability and performance notes.
 ```
 [Solution](lfht/largestTreeinForest.cpp) 
+
+
+- ### [Amazon](https://www.amazon.com/) 
+    > These problems were encountered in amazon's interview process for the role of software developer in their embedded software-dev team.
+    1. [amz1](imgs/amazon_embedded/)
+    2. [amz2](imgs/amazon_embedded/)
+
+- ### Miscellaneous
+    > This directory has problems from various other interviews. 
+    1. [misc1](miscellaneous/find_scrambled.cpp)
