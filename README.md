@@ -1,15 +1,16 @@
 # Phyllanthus Emblica
-<img align="right" width="75" height="75" src="imgs/logo/logo.ico">
+<img align="right" width="150" height="150" src="imgs/logo/logo.ico">
 
-## brief:
+## Brief:
      Collection of interview coding assignments. The Author strongly **discourages plagarism**. The solutions are implemented in C++ and *tries to conform to [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
 
-## build instruction
+## Build Instruction:
     This project uses cmake as build files generator & can be build as follows.
     - mkdir <build> //create a build directory to save all the binaries.
     - cd <build> && cmake ..
     - make  
 
+## Problems:
 - ### [Goldman Sachs](https://www.goldmansachs.com/) 
     > The problem was to find the root node of the largest tree (with the larges number of nodes) in a forest. More info about the problem can be found in the following images.
     1. [gs1](imgs/goldman_sachs/cpad_1/gs_largestForest0.png)

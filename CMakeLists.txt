@@ -13,7 +13,6 @@ endif(UNIX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 
-# add_subdirectory(libraries)
 add_subdirectory(jump_trading)
 add_subdirectory(goldman_sachs)
 add_subdirectory(lhft)
