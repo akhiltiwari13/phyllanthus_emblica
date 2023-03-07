@@ -19,7 +19,8 @@ int solve(vector<int>&vec, int s, int e, int n){
     }
 }
 
-int main(int argc, char* argv[]){
+// int main(int argc, char* argv[]){
+int main(){
     std::vector<int> v{8,9,10,1,2,3,4,5};
     std::cout<<solve(v,0,v.size()-1,8)<<std::endl;
     return 0;

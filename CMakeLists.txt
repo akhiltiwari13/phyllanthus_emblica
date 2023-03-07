@@ -10,6 +10,11 @@ else(UNIX)
     message(status "Building on an unsupported/untested platform.")
 endif(UNIX)
 
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    include_directories(${CMAKE_SOURCE_DIR}/osx_inc/)
+endif()
+
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 
@@ -22,3 +27,5 @@ add_subdirectory(trading_technologies)
 add_subdirectory(standard_chartered)
 add_subdirectory(squarepoint_capital)
 add_subdirectory(edgeverve)
+add_subdirectory(imc)
+add_subdirectory(jpmc)

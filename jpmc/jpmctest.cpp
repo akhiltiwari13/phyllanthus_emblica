@@ -1,3 +1,13 @@
+/**
+ * @file jpmctest.cpp
+ * @author akhil tiwari (akhiltiwari.13@gmail.com)
+ * @brief jpmc quant-researcher interview round 1
+ * @version 0.1
+ * @date 2023-03-07
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 #include<iostream>
 using namespace std;
 
