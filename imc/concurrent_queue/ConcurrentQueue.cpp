@@ -8,10 +8,12 @@
 template<typename T, uint64_t SIZE = 4096, uint64_t MAX_SPIN_ON_BUSY = 40000000>
 class ConcurrentQueue {
 private:
+    //review note1: Instead of using a custom fuction to get log on base 2, the standard library function can be used i.e std::log2 
     static constexpr unsigned Log2(unsigned n, unsigned p = 0) {
         return (n <= 1) ? p : Log2(n / 2, p + 1);
     }
 
+    //review note2: use std::ceil & std::pow instead
     static constexpr uint64_t closestExponentOf2(uint64_t x) {
         return (1UL << ((uint64_t) (Log2(SIZE - 1)) + 1));
     }
@@ -44,10 +46,12 @@ public:
         return ret;
     }
 
+    // review note5: could be inlined
     bool peek() const {
         return (mWritePtr != mReadPtr);
     }
 
+    // review note3: a data member could be used to return the size instead of calculating it on the fly.
     uint64_t getCount() const {
         return mWritePtr > mReadPtr ? mWritePtr - mReadPtr : mReadPtr - mWritePtr;
     }
@@ -64,6 +68,7 @@ public:
 
     void push(const T& pItem) {
         if (!busyWaitForPush()) {
+            //review note4: this would abort the queue thus breaking the entire messaging ecosystem.
             throw std::runtime_error("Concurrent queue full cannot write to it!");
         }
 
@@ -73,6 +78,7 @@ public:
     }
 
     void push(T&& pItem) {
+        //review note4 applies here too.
         if (!busyWaitForPush()) {
             throw std::runtime_error("Concurrent queue full cannot write to it!");
         }

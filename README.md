@@ -269,6 +269,12 @@ Bonus points: testability and performance notes.
     1. [amz1](imgs/amazon_embedded/)
     2. [amz2](imgs/amazon_embedded/)
 
+- ### [IMC](https://www.imc.com/ap/) 
+    > IMC's introductory assignment.
+    1. [assignment](imgs/imc/img_cpp_asgnmt.pdf)
+        - [solution](imc/README.md)
+
+
 - ### Miscellaneous
     > This directory has problems from various other interviews. 
     1. [misc1](miscellaneous/find_scrambled.cpp)
