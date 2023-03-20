@@ -26,6 +26,13 @@ add_subdirectory(optiver)
 add_subdirectory(trading_technologies)
 add_subdirectory(standard_chartered)
 add_subdirectory(squarepoint_capital)
+add_subdirectory(millenium)
 add_subdirectory(edgeverve)
 add_subdirectory(imc)
 add_subdirectory(jpmc)
+add_subdirectory(ogha)
+
+# @TODO: 
+# 1-> review goldman_sachs, trc, sc, imc, jpmc
+# 1-> solve jump, lhft, trading_tech, sq_capt 
+# 2-> add amazon_embedded, edgeverve, miscellaneous directories to the build remove flipkart's problem

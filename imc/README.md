@@ -1,13 +1,13 @@
 # IMC Assignment
     This README has any supplementary info required for the 2 problems. It also includes my answers to the subjective questions in the 2nd problem.
 
-## Rock-Paper-Scissors
+## Rock-Paper-Scissors [solution](./rock_paper_scissor/main.cpp)
     The project was built, executed & tested on a MacOS m/c. It should, most likely, be compatible with most linux distros as well. 
 ### build instructions:
     from the source directory
     mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make
 
-## ConcurrentQueue code review Answers:
+## ConcurrentQueue code review Answers [file](./concurrent_queue/ConcurrentQueue.cpp):
 ```     
    • What changes would you suggest in a code review? Would you check in your code like this? Do you think the code is clean? 
     -> There are some asthetic change that could improve the code for example using standard library functions where possible and segregating the concurrent queue among header and cpp files etc.. Detailed review is added as comments to the code.

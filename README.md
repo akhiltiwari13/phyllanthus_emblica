@@ -224,9 +224,7 @@ Your implementation of the order book should read market data file and build ord
 
 Market data file format: 
 
-Each line represents order added in chronological order.
-
-First byte of each line represents message type:
+Each line represents order added in chronological order. First byte of each line represents message type:
 
      'A' - new order
      'X' - delete order
@@ -271,9 +269,13 @@ Bonus points: testability and performance notes.
 
 - ### [IMC](https://www.imc.com/ap/) 
     > IMC's introductory assignment.
-    1. [assignment](imgs/imc/img_cpp_asgnmt.pdf)
+    1. [assignment](imgs/imc/imc_cpp_asgnmt.pdf)
         - [solution](imc/README.md)
 
+- ### [Ogha](http://www.ogha-research.in) 
+    > ogha-research's introductory assignment.
+    1. [assignment](imgs/ogha/ogha_assignment.pdf)
+        - [solution](ogha/README.md)
 
 - ### Miscellaneous
     > This directory has problems from various other interviews. 

@@ -1,0 +1,1 @@
+add_executable(ticker_parser ticker_parser.cpp)

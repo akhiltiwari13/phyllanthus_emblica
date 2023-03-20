@@ -30,44 +30,79 @@ size_t getSerialSize(const OrderBatch *ob){
     return serial_sz;
 }
 
-FuncStatus_t serialize_order(const struct OrderBatch *order_batch, const size_t out_max_length, uint8_t *out) {
-    /* Warning: You can use stdout for debugging, but doing so will cause the test cases to fail. */
-    auto tptr{out};
-    int_fast32_t payload_len{};
-    auto face = 0xFACE;
-    if(!order_batch) return STATUS_NULL_INPUT;
-    else{
-        //process a valid orderbatch;
-        payload_len = getSerialSize(order_batch) + 10;
-        if(payload_len < out_max_length) return STATUS_INSUFFICIENT_OUTPUT_BUFFER;
-        //memcpy(tptr, &face, sizeof(face));
-        *tptr = face;
-        tptr+=sizeof(face);
-        //memcpy(tptr, &payload_len, sizeof(payload_len));
-        *tptr= payload_len;
-        tptr+=sizeof(payload_len);
-        //memcpy(tptr,&order_batch,12); //serialize order_count & batch_id
-        *tptr=order_batch->order_count;
-        tptr+=4;
-        *tptr=order_batch->batch_id;
-        tptr+=8;
-        auto ord_count = order_batch->order_count;
-        auto ords = order_batch->orders;
-        while(ord_count && ords){
-            //memcpy(tptr,&ords,sizeof(Order)); //serialize order_count & batch_id
-            //tptr+=sizeof(Order);
-            *tptr = ords->quantity; tptr+=2;
-            *tptr = ords->order_id; tptr+=8;
-            //*tptr = ords->part_number; 
-            memcpy(tptr, ords->part_number, 16);
-            tptr+=16;
-            memcpy(tptr, ords->email_address, 32);
-            tptr+=32;
-            ++ords; --ord_count;
-        }
-    }
+// FuncStatus_t serialize_order(const struct OrderBatch *order_batch, const size_t out_max_length, uint8_t *out) {
+//     /* Warning: You can use stdout for debugging, but doing so will cause the test cases to fail. */
+//     auto tptr{out};
+//     int_fast32_t payload_len{};
+//     auto face = 0xFACE;
+//     if(!order_batch) return STATUS_NULL_INPUT;
+//     else{
+//         //process a valid orderbatch;
+//         payload_len = getSerialSize(order_batch) + 10;
+//         if(payload_len < out_max_length) return STATUS_INSUFFICIENT_OUTPUT_BUFFER;
+//         //memcpy(tptr, &face, sizeof(face));
+//         *tptr = face;
+//         tptr+=sizeof(face);
+//         //memcpy(tptr, &payload_len, sizeof(payload_len));
+//         *tptr= payload_len;
+//         tptr+=sizeof(payload_len);
+//         //memcpy(tptr,&order_batch,12); //serialize order_count & batch_id
+//         *tptr=order_batch->order_count;
+//         tptr+=4;
+//         *tptr=order_batch->batch_id;
+//         tptr+=8;
+//         auto ord_count = order_batch->order_count;
+//         auto ords = order_batch->orders;
+//         while(ord_count && ords){
+//             //memcpy(tptr,&ords,sizeof(Order)); //serialize order_count & batch_id
+//             //tptr+=sizeof(Order);
+//             *tptr = ords->quantity; tptr+=2;
+//             *tptr = ords->order_id; tptr+=8;
+//             //*tptr = ords->part_number; 
+//             memcpy(tptr, ords->part_number, 16);
+//             tptr+=16;
+//             memcpy(tptr, ords->email_address, 32);
+//             tptr+=32;
+//             ++ords; --ord_count;
+//         }
+//     }
     
-    return STATUS_SUCCESS;
+//     return STATUS_SUCCESS;
+// }
+
+// generated serialization code
+// TODO: test this code.
+// Note that this implementation assumes that the output buffer has already been allocated and is of the correct size.
+// It also assumes that the data types used in the OrderBatch and Order structures have the expected sizes and endianness.
+// To make the serialization more robust and platform-independent, one could consider using fixed-size data types from the <cstdint> header and/or adding code to convert endianness if necessary.
+
+bool serialize_order(const OrderBatch *order_batch, const size_t out_max_length, uint8_t *out) {
+// check if output buffer is large enough to store serialized data
+size_t expected_size = sizeof(OrderBatch) + sizeof(Order) * order_batch->order_count;
+if (expected_size > out_max_length) {
+return false;
+}
+// serialize the OrderBatch header
+uint8_t *p = out;
+memcpy(p, &order_batch->order_count, sizeof(order_batch->order_count));
+p += sizeof(order_batch->order_count);
+memcpy(p, &order_batch->batch_id, sizeof(order_batch->batch_id));
+p += sizeof(order_batch->batch_id);
+
+// serialize each Order in the batch
+for (uint32_t i = 0; i < order_batch->order_count; i++) {
+    const Order *order = &order_batch->orders[i];
+    memcpy(p, &order->quantity, sizeof(order->quantity));
+    p += sizeof(order->quantity);
+    memcpy(p, &order->order_id, sizeof(order->order_id));
+    p += sizeof(order->order_id);
+    memcpy(p, &order->part_number, sizeof(order->part_number));
+    p += sizeof(order->part_number);
+    memcpy(p, order->email_address, sizeof(order->email_address));
+    p += sizeof(order->email_address);
+}
+
+return true;
 }
 
 #define ORDER_BATCH_NUM_BYTES (22)
