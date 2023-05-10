@@ -1,3 +1,4 @@
+//this submission could only clear 6 out of 13 testcases.
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -31,7 +32,7 @@ void processData(std::stringstream& ss, std::map<string, pair<string,double>>& _
     }
 }
 
-int main(int argc, char* argv[]){
+int main(){
     std::string line{}, word{};
     std::map<string, pair<string,double>> _map{};
     //std::stringstream ss;

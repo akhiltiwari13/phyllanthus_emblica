@@ -41,6 +41,31 @@
     6. [trc_2b](imgs/trc/road_network/10RoadNetwork02.png)
         - [solution](tower_research_capital/road_network.cpp)
 
+- ### [Amazon](https://www.amazon.com/) 
+    > These problems were encountered in amazon's interview process for the role of software developer in their embedded software-dev team.
+    1. [amz1](imgs/amazon_embedded/)
+    2. [amz2](imgs/amazon_embedded/)
+
+- ### [IMC](https://www.imc.com/ap/) 
+    > IMC's introductory assignment.
+    1. [assignment](imgs/imc/imc_cpp_asgnmt.pdf)
+        - [solution](imc/README.md)
+
+- ### [Ogha](http://www.ogha-research.in) 
+    > ogha-research's introductory assignment.
+    1. [assignment](imgs/ogha/ogha_assignment.pdf)
+        - [solution](ogha/README.md)
+
+- ### [Squarepoint Capital](https://squarepoint-capital.com) 
+    > sqpc's 2nd attempt.
+    
+    2. [problem](imgs/squarepoint-capital/sqpc2.png)
+        - [solution](squarepoint-capital/accumulator.cpp)
+
+
+- ### Miscellaneous
+    > This directory has problems from various other interviews. 
+    1. [misc1](miscellaneous/find_scrambled.cpp)
 
 - ### [LHFT's](https://www.lhft.io/) problem statement:
 
@@ -259,24 +284,4 @@ For example:
 
 Bonus points: testability and performance notes.
 ```
-[Solution](lfht/largestTreeinForest.cpp) 
-
-
-- ### [Amazon](https://www.amazon.com/) 
-    > These problems were encountered in amazon's interview process for the role of software developer in their embedded software-dev team.
-    1. [amz1](imgs/amazon_embedded/)
-    2. [amz2](imgs/amazon_embedded/)
-
-- ### [IMC](https://www.imc.com/ap/) 
-    > IMC's introductory assignment.
-    1. [assignment](imgs/imc/imc_cpp_asgnmt.pdf)
-        - [solution](imc/README.md)
-
-- ### [Ogha](http://www.ogha-research.in) 
-    > ogha-research's introductory assignment.
-    1. [assignment](imgs/ogha/ogha_assignment.pdf)
-        - [solution](ogha/README.md)
-
-- ### Miscellaneous
-    > This directory has problems from various other interviews. 
-    1. [misc1](miscellaneous/find_scrambled.cpp)
+[Solution](lfht/main.cpp) 

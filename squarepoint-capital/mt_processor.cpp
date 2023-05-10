@@ -13,7 +13,7 @@
    The aim is to end up with the following pipeline:
    Feeder -> Engine -> Output
    This excersize is quite long so please focus on having something which
-   works. You should start with the Engine class as the Outpus module is less
+   works. You should start with the Engine class as the Outputs module is less
    important.
 
    Application example: string sorting

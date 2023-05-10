@@ -11,17 +11,6 @@ Else {
 }
 } 
 
-
-
-Template <typename T, typename U>
-Struct is_same : std::false_type {
-};
-
-Template <typename T>
-Struct is_same<T,T> : std::true_type {
-};
-
-
 Template <>
 //typename t1, typename t2
 Class Is_Same(){
@@ -33,6 +22,13 @@ Public:
 
 };
 
+Template <typename T, typename U>
+Struct is_same : std::false_type {
+};
+
+Template <typename T>
+Struct is_same<T,T> : std::true_type {
+};
 
 /* ================== shared_ptr implementation ============================= */
 
