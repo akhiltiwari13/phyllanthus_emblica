@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.20)
 
-project(HoldingsSimulator VERSION 0.1 LANGUAGES CXX)
+project(HoldingPositionSimulator VERSION 1.0 LANGUAGES CXX)
 
 message(status "***pre-build*** ${PROJECT_SOURCE_DIR}")
 
@@ -16,13 +16,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic")
 
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
-
-
 find_package(yaml-cpp REQUIRED)
+# find_package(Dlfcn REQUIRED) #part of standard c library on mac.
 
+include_directories(libraries)
 
-# add_subdirectory(src)
+add_subdirectory(libraries)
+add_subdirectory(programs)
 # add_subdirectory(test)
-add_subdirectory(lib)
-add_subdirectory(program)
+
