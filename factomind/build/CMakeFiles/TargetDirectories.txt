@@ -1,0 +1,8 @@
+/Users/akhil/files/projects/phyllanthus_emblica/factomind/build/CMakeFiles/edit_cache.dir
+/Users/akhil/files/projects/phyllanthus_emblica/factomind/build/CMakeFiles/rebuild_cache.dir
+/Users/akhil/files/projects/phyllanthus_emblica/factomind/build/lib/CMakeFiles/edit_cache.dir
+/Users/akhil/files/projects/phyllanthus_emblica/factomind/build/lib/CMakeFiles/rebuild_cache.dir
+/Users/akhil/files/projects/phyllanthus_emblica/factomind/build/program/CMakeFiles/cfg_parser.dir
+/Users/akhil/files/projects/phyllanthus_emblica/factomind/build/program/CMakeFiles/simulator.dir
+/Users/akhil/files/projects/phyllanthus_emblica/factomind/build/program/CMakeFiles/edit_cache.dir
+/Users/akhil/files/projects/phyllanthus_emblica/factomind/build/program/CMakeFiles/rebuild_cache.dir

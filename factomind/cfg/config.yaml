@@ -1,0 +1,20 @@
+Simulation:
+  Info:
+    StartTime: 2020-01-01
+    EndTime: 2022-12-31
+  Algo:
+    SimulatorSample_1:
+      Algoname: Algo1
+      param1: 1.0
+      param2: 24
+      param3: 0
+    SimulatorSample_2:
+      Algoname: Algo1
+      param1: 1.5
+      param2: 24
+      param3: 0
+    SimulatorSample_3:
+      Algoname: Algo2
+      val1: 365
+      val2: 20
+      val3: 2.0

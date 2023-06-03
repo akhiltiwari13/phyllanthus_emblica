@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.20)
 
 project(PhyllanthusEmblica VERSION 0.1 LANGUAGES CXX)
 
@@ -30,8 +30,12 @@ add_subdirectory(millenium)
 add_subdirectory(edgeverve)
 add_subdirectory(imc)
 add_subdirectory(jpmc)
-add_subdirectory(ogha)
 add_subdirectory(aargo_trade)
+add_subdirectory(ogha)
+# add_subdirectory(factomind)
+add_subdirectory(greenland_investment_mgmt)
+# add_subdirectory(trexquant)
+# add_subdirectory(alphagrep)
 
 # @TODO: 
 # 1-> review goldman_sachs, trc, sc, imc, jpmc
