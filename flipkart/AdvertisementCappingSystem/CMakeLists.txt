@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.20)
 
 project(add_cap VERSION 0.1 LANGUAGES CXX)
 
