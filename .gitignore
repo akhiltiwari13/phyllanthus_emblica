@@ -1,5 +1,6 @@
-# project builds.
-*build*
+# project build directories.
+/build/
+**/build/
 
 # project's workspace related. 
 tags
