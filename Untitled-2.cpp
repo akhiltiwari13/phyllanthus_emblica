@@ -36,7 +36,7 @@ int main()
     ofstream fout(getenv("OUTPUT_PATH"));
 
     string pnl_count_temp;
-    getline(cin, pnl_count_temp);
+   getline(cin, pnl_count_temp);
 
     int pnl_count = stoi(ltrim(rtrim(pnl_count_temp)));
 
@@ -86,3 +86,4 @@ string rtrim(const string &str) {
 
     return s;
 }
+

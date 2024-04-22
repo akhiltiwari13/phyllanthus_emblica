@@ -5,7 +5,7 @@ void VersionQueue::Enqueue(int value) {
     if (front_ == nullptr) {
         front_ = new_node;
     } else {
-        back_->next = new_node;
+       back_->next = new_node;
     }
     back_ = new_node;
     current_version_++;

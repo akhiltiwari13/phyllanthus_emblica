@@ -1,22 +1,9 @@
 #include <algorithm>
-#include <bitset>
-#include <climits>
-#include <cmath>
 #include <cstdio>
 #include <cstdlib>
-#include <cstring>
-#include <ctime>
-#include <deque>
-#include <fstream>
 #include <iostream>
 #include <limits>
-#include <list>
-#include <map>
-#include <numeric>
 #include <queue>
-#include <set>
-#include <sstream>
-#include <stack>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -25,6 +12,13 @@
 #include <regex>
 
 using namespace std;
+
+/* Parse the input to form the graph. The graph can be represented as an adjacency list where each node has a list of neighbors and the corresponding weights. */
+/* Parse the second line to get the starting node, ending node, and maximum allowed time. */
+/* Implement Dijkstra's algorithm to find the shortest path. Make sure to keep track of the path and check against the maximum allowed travel time. */
+/* Check for input syntax errors and logical errors during the parsing phase and during the shortest path finding phase. */
+/* If the shortest path is found, print the route using the described representation. */
+/* If there are errors or the shortest path is not found, print the corresponding error code. */
 
 namespace app {
 class Sol {

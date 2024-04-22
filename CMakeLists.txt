@@ -20,7 +20,7 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 
 add_subdirectory(jump_trading)
 add_subdirectory(goldman_sachs)
-add_subdirectory(lhft)
+# add_subdirectory(lhft)
 add_subdirectory(tower_research_capital)
 add_subdirectory(optiver)
 add_subdirectory(trading_technologies)
@@ -36,6 +36,7 @@ add_subdirectory(ogha)
 add_subdirectory(greenland_investment_mgmt)
 # add_subdirectory(trexquant)
 # add_subdirectory(alphagrep)
+add_subdirectory(amazon_embedded)
 
 # @TODO: 
 # 1-> review goldman_sachs, trc, sc, imc, jpmc

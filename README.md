@@ -1,34 +1,28 @@
-# Phyllanthus Emblica
-<img align="right" width="150" height="150" src="imgs/logo/logo.ico">
+# Phyllanthus Emblica  <img align="center" width="75" height="75" src="imgs/logo/logo.ico" >
+
 
 ## Brief:
-     Collection of interview coding assignments. The Author strongly **discourages plagarism**. The solutions are implemented in C++ and *tries to conform to [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
+> Collection of interview questions and coding assignments. The Author strongly **discourages plagarism**. The solutions are implemented in C++ and *tries to conform to [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
 
 ## Build Instruction:
-    This project uses cmake as build files generator & can be build as follows.
-    - mkdir <build> //create a build directory to save all the binaries.
-    - cd <build> && cmake ..
-    - make  
+> This project uses cmake as the pre-build system & can be build as follows. Make sure the required dependencies are installed on the system (check CMakeLists.txt to identify the dependencies)
+> 1.  mkdir \<build\> //create a build directory to save all the binaries.
+> 2.  cd \<build\> && cmake ..
+> 3.  make  
 
 ## Problems:
 - ### [Goldman Sachs](https://www.goldmansachs.com/) 
-    > The problem was to find the root node of the largest tree (with the larges number of nodes) in a forest. More info about the problem can be found in the following images.
-    1. [gs1](imgs/goldman_sachs/cpad_1/gs_largestForest0.png)
-    2. [gs2](imgs/goldman_sachs/cpad_1/gs_largestForest1.png)
-    3. [gs3](imgs/goldman_sachs/cpad_1/gs_largestForest2.png)
-        - [Solution](goldman_sachs/largestTreeinForest.cpp) 
+    > The problem is to find the root node of the largest tree (with the largest number of nodes) in a forest. [Solution](goldman_sachs/largestTreeinForest.cpp) 
 
 - ### [Optiver](https://www.optiver.com/) 
-    > An unusually relaxed hackerrank test (with a duration of 48 hrs) comprising of 3 programing questions (easy, medium & hard) and 5 multiple choice questions. The problems had hidden testcases which had to be passed. The test should generally take between 6 to 8 hours to solve. 
+    > The problems had hidden testcases which had to be passed. 
     1. [optv1a](imgs/optiver/code_graph_traversal0.png)
     2. [optv1b](imgs/optiver/code_graph_traversal1.png)
     3. [optv1c](imgs/optiver/code_graph_traversal2.png)
     4. [optv1d](imgs/optiver/code_graph_traversal3.png)
 
 - ### [jumpTrading](https://www.jumptrading.com/) 
-    > The problem was to implement a file iterator that parses numerical data. More info about the problem can be found in the images below.
-    1. [jumpTrading_1](imgs/jump_trading/Jump1_1.png)
-    2. [jumpTrading_2](imgs/jump_trading/Jump1_2.png)
+    > The problem is to implement a file parser that stores only  integral data from the file. [Solution](jump_trading/TextParser.cpp) 
 
 - ### [Tower Research Capital](https://www.tower-research.com/) 
     > Following is a collection of set of problems encountered during TRC's interviews.
@@ -72,3 +66,5 @@
 
 - ### [Greenland Investment management's](https://www.lhft.io/) introductory assignment problems  
 <!-- TODO: LINK PROBLEM IMAGES AND SOLUTION FILES -->
+
+
