@@ -5,10 +5,12 @@
 #include <vector>
 #include <algorithm>
 
+using std::string;
+
 struct LogEntry {
-    long long timestamp;
-    std::string symbol;
-    std::string subType;
+  long long timestamp;
+  std::string symbol;
+  std::string subType;
 };
 
 struct AckData {
@@ -18,14 +20,14 @@ struct AckData {
     std::string symbol;
 };
 
-std::vector<std::string> split(const std::string& str, char delimiter) {
-    std::vector<std::string> elements;
-    std::stringstream ss(str);
-    std::string item;
-    while (std::getline(ss, item, delimiter)) {
-        elements.push_back(item);
-    }
-    return elements;
+std::vector<string> split(const std::string &str, char delimiter) {
+  std::vector<std::string> elements;
+  std::stringstream ss(str);
+  std::string item;
+  while (std::getline(ss, item, delimiter)) {
+    elements.push_back(item);
+  }
+  return elements;
 }
 
 int main() {

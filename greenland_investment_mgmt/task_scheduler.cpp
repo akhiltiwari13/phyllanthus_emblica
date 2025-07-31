@@ -1,6 +1,9 @@
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 #include <cctype>
 #include <queue>
+#include <vector>
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -37,9 +40,21 @@ int getMinMachines(vector<int> start, vector<int> end) {
     }
     return machineQueue.size();
 }
+void printHelp() {
+    std::cout << "Usage: ./program_name" << std::endl;
+    std::cout << "This program calculates the minimum number of machines needed to complete a set of tasks." << std::endl;
+    std::cout << "Input format:" << std::endl;
+    std::cout << "  First line: Number of tasks (n)" << std::endl;
+    std::cout << "  Next n lines: Start times of tasks" << std::endl;
+    std::cout << "  Next line: Number of tasks (should be same as n)" << std::endl;
+    std::cout << "  Next n lines: End times of tasks" << std::endl;
+    std::cout << "Output:" << std::endl;
+    std::cout << "  Minimum number of machines required" << std::endl;
+}
 
 int main()
 {
+    printHelp();
     ofstream fout(getenv("OUTPUT_PATH"));
 
     string start_count_temp;

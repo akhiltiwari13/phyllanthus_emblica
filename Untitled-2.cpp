@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <cstring>
 
 using namespace std;
 
@@ -7,7 +7,7 @@ string rtrim(const string &);
 
 
 /*
- * Complete the 'getMaxProfit' function below.
+ * Complete the 'getMaxProfit' function below.Complete
  *
  * The function is expected to return a LONG_INTEGER.
  * The function accepts following parameters:

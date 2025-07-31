@@ -7,6 +7,7 @@ tags
 compile_commands.json
 .cache/*
 .ccls-cache/*
+.ccls/*
 
 Session.vim
 *.swo
