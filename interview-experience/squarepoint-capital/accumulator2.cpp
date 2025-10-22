@@ -1,4 +1,11 @@
-#include <bits/stdc++.h>
+
+#include <future>
+#include <iostream>
+#include <memory>
+#include <mutex>
+#include <vector>
+#include <unordered_map>
+#include <functional>
 
 template <typename T, typename Op>
 class accumulator
@@ -27,7 +34,7 @@ private:
 constexpr bool check_001_enabled = true;
 constexpr bool check_002_enabled = true;
 constexpr bool check_003_enabled = true;
-constexpr bool check_004_enabled = true
+constexpr bool check_004_enabled = true;
 constexpr bool check_005_enabled = true;
 constexpr bool check_006_enabled = true;
 constexpr bool check_007_enabled = false;

@@ -1,8 +1,9 @@
-from conan import ConanFile
 from conan.errors import ConanInvalidConfiguration
 from conan.tools.build import check_min_cppstd
 from conan.tools.cmake import CMakeDeps, CMakeToolchain, cmake_layout
 from conan.tools.scm import Version
+
+from conan import ConanFile
 
 
 class PhyllanthusEmblicaRecepie(ConanFile):
@@ -20,6 +21,7 @@ class PhyllanthusEmblicaRecepie(ConanFile):
 
     def requirements(self):
         self.requires("boost/[~1.88]")
+        self.requires("yaml-cpp/[~0.8]")
 
     def build_requirements(self):
         self.tool_requires("cmake/[>=3.30 <4.0]")

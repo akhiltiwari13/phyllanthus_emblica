@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
         std::string word = line;
         string::size_type begIdx, endIdx;
         // search beginning of the first word
-        beg    Idx = line.find_first_not_of(delims);
+        begIdx = line.find_first_not_of(delims);
         // while beginning of a word found
         while (begIdx != string::npos) {
             // search end of the actual word

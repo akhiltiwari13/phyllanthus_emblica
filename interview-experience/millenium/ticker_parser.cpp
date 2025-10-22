@@ -1,7 +1,9 @@
 //this submission could only clear 6 out of 13 testcases.
-#include <bits/stdc++.h>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <string>
 
-using namespace std;
 
 bool isAlpha(std::string str){
  bool contains_non_alpha = str.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") == std::string::npos;   
@@ -12,10 +14,9 @@ void toUpper(std::string& str){
    for(auto &c: str)c=toupper(c); 
 }
 
-void processData(std::stringstream& ss, std::map<string, pair<string,double>>& _map){
+void processData(std::stringstream& ss, std::map<std::string, std::pair<std::string,double>>& _map){
     std::string word;
     std::string key{};
-    bool isPrice{false};
     while(ss >> word){
         if(isAlpha(word)){
             key = word;
@@ -34,7 +35,7 @@ void processData(std::stringstream& ss, std::map<string, pair<string,double>>& _
 
 int main(){
     std::string line{}, word{};
-    std::map<string, pair<string,double>> _map{};
+    std::map<std::string, std::pair<std::string,double>> _map{};
     //std::stringstream ss;
     while (std::getline(std::cin, line)) {
        std::stringstream ss(line);

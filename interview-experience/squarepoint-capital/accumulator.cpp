@@ -1,4 +1,10 @@
-#include <bits/stdc++.h>
+#include <future>
+#include <iostream>
+#include <memory>
+#include <mutex>
+#include <vector>
+#include <unordered_map>
+#include <functional>
 
 template <typename T, typename Op>
 class accumulator
@@ -44,7 +50,8 @@ inline void user_defined_code()
 // Implement the accumulator class here
 template <typename T, typename Op> struct accumulator<T,Op>::pimpl {
   public:
-    pimpl(T init, Op op) : state_(std::move(init)), op_(std::move(op)) {}
+// perfect forwarding
+    pimpl(T&& init, Op&& op) : state_(std::forward<T>(init)), op_(std::forward<Op>(op)) {}
 
     template <typename U> void generic_push(U &&value) {
       push(std::forward<U>(value));

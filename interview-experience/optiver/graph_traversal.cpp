@@ -26,7 +26,7 @@ public:
   void ParseLine(const string &line, unsigned int lineCount) {
     switch (lineCount) {
     case 0: {
-      regex pattern("[\[]([A-Z]),([A-Z]),(\\d+)[\\]]");
+      regex pattern("[\\[]([A-Z]),([A-Z]),(\\d+)[\\]]");
       const string delim(" ");
       string::size_type begIdx{}, endIdx{};
       begIdx = line.find_first_not_of(delim);

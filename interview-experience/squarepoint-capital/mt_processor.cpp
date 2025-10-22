@@ -48,7 +48,7 @@ namespace app {
             ~Feeder() noexcept = default; //use of default keyword.
 
             void run(){
-                m_thread= std::thread([this](){
+                m_thread= std::thread([](){
                         for(std::string line; std::getline(std::cin,line);){
                         std::cout<< "Feeding "<< line <<std::endl;
                         // @TODO- send to engine.
