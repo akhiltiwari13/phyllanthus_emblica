@@ -1,43 +1,39 @@
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.30 )
 
-project(PhyllanthusEmblica VERSION 0.1 LANGUAGES CXX)
+project(phyllanthus-emblica VERSION 0.1 LANGUAGES CXX)
 
-message(status "***pre-build*** ${PROJECT_SOURCE_DIR}")
+message(STATUS "***pre-build*** ${PROJECT_NAME}. building with cmake version: ${CMAKE_VERSION}")
 
-if(UNIX)
-  message(status "Building on Linux/Unix")
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+	message(STATUS "Building on Linux")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+	message(STATUS "Building on Mac")
 else()
-  message(status "Building on an unsupported/untested platform.")
+	message(STATUS "Building on an unsupported/untested platform.")
 endif()
 
-if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  include_directories(${CMAKE_SOURCE_DIR}/osx_inc/)
+if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
+	message(FATAL_ERROR "In-source builds are not allowed")
 endif()
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON) # if the compiler is of older version and cannot support cpp 23 feature build. This will indicate a cmake errro at this step.
+set(CMAKE_EXTENSIONS OFF) # favour portability over minior compiler specific feature gains.
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Werror")
 
-add_subdirectory(jump_trading)
-add_subdirectory(goldman_sachs)
-add_subdirectory(tower_research_capital)
-add_subdirectory(optiver)
-add_subdirectory(trading_technologies)
-add_subdirectory(standard_chartered)
-add_subdirectory(squarepoint-capital)
-add_subdirectory(millenium)
-add_subdirectory(edgeverve)
-add_subdirectory(imc)
-add_subdirectory(jpmc)
-add_subdirectory(aargo_trade)
-add_subdirectory(ogha)
-# add_subdirectory(factomind)
-add_subdirectory(greenland_investment_mgmt)
-# add_subdirectory(trexquant)
-# add_subdirectory(alphagrep)
-# add_subdirectory(lhft)
-add_subdirectory(amazon_embedded)
-add_subdirectory(miscellaneous)
-add_executable(greenland circ_buff.cpp)
+include(CheckIPOSupported)
+check_ipo_supported(RESULT ipo_supported)
+set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ${ipo_supported})
+
+add_subdirectory(interview-experience)
+add_subdirectory(playground)
+add_subdirectory(extras)
+
+# better to move it ot a function.
+message("cpp features supported by the available compiler: \n")
+foreach(feature ${CMAKE_CXX_COMPILE_FEATURES})
+	message(${feature})
+endforeach(feature)
 
 # @TODO:
 # 1-> review goldman_sachs, trc, sc, imc, jpmc
