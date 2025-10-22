@@ -26,8 +26,9 @@ this approach is correct however I could not figure out any corner cases for
 
 // ======================================================
 #include <algorithm>
-#include <bits/stdc++.h>
 #include <vector>
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 

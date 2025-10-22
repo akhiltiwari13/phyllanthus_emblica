@@ -10,10 +10,13 @@ add_subdirectory(edgeverve)
 add_subdirectory(imc)
 add_subdirectory(jpmc)
 add_subdirectory(aargo_trade)
-# add_subdirectory(ogha) add_subdirectory(factomind)
-# add_subdirectory(greenland_investment_mgmt) add_subdirectory(alphagrep)
-# add_subdirectory(lhft) add_subdirectory(amazon_embedded)
-# add_subdirectory(miscellaneous) add_executable(greenland circ_buff.cpp)
+add_subdirectory(ogha)
+# add_subdirectory(factomind)
+add_subdirectory(greenland_investment_mgmt)
+# add_subdirectory(alphagrep) add_subdirectory(lhft)
+# add_subdirectory(amazon_embedded)
+add_subdirectory(miscellaneous)
+# add_executable(greenland circ_buff.cpp)
 
 # @TODO: 1-> review goldman_sachs, trc, sc, imc, jpmc 1-> solve jump, lhft,
 # trading_tech, sq_capital etc 2-> add amazon_embedded, edgeverve, miscellaneous

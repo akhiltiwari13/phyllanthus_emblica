@@ -1,9 +1,12 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <fstream>
 
 using namespace std;
 
-string ltrim(const string &);
-string rtrim(const string &);
+std::string trim(const string &);
+std::string trim(const string &);
 
 
 /*
@@ -113,28 +116,40 @@ int main()
 
     return 0;
 }
+// #include <algorithm>
+// #include <cctype>
+// #include <string>
 
-string ltrim(const string &str) {
-    string s(str);
+std::string trim(const std::string& s) {
+    auto is_not_space = [](unsigned char c) { return !std::isspace(c); };
 
-    s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
-    );
+    auto first = std::find_if(s.begin(), s.end(), is_not_space);
+    auto last = std::find_if(s.rbegin(), s.rend(), is_not_space).base();
 
-    return s;
+    return (first < last) ? std::string(first, last) : std::string();
 }
 
-string rtrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
-        s.end()
-    );
-
-    return s;
-}
+// string ltrim(const string &str) {
+//     string s(str);
+//
+//     s.erase(
+//         s.begin(),
+//         find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
+//     );
+//
+//     return s;
+// }
+//
+// string rtrim(const string &str) {
+//     string s(str);
+//
+//     s.erase(
+//         find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+//         s.end()
+//     );
+//
+//     return s;
+// }
 
 
 //example

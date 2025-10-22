@@ -1,4 +1,3 @@
-
 #include <string>
 #include <vector>
 #include <fstream>
@@ -6,8 +5,7 @@
 
 using namespace std;
 
-string ltrim(const string &);
-string rtrim(const string &);
+string trim(const string &);
 vector<string> split(const string &);
 
 
@@ -76,12 +74,12 @@ int main()
     string matrix_rows_temp;
     getline(cin, matrix_rows_temp);
 
-    int matrix_rows = stoi(ltrim(rtrim(matrix_rows_temp)));
+    int matrix_rows = stoi(trim(matrix_rows_temp));
 
     string matrix_columns_temp;
     getline(cin, matrix_columns_temp);
 
-    int matrix_columns = stoi(ltrim(rtrim(matrix_columns_temp)));
+    int matrix_columns = stoi(trim(matrix_columns_temp));
 
     vector<vector<int>> matrix(matrix_rows);
 
@@ -91,7 +89,7 @@ int main()
         string matrix_row_temp_temp;
         getline(cin, matrix_row_temp_temp);
 
-        vector<string> matrix_row_temp = split(rtrim(matrix_row_temp_temp));
+        vector<string> matrix_row_temp = split(trim(matrix_row_temp_temp));
 
         for (int j = 0; j < matrix_columns; j++) {
             int matrix_row_item = stoi(matrix_row_temp[j]);
@@ -109,28 +107,37 @@ int main()
     return 0;
 }
 
-string ltrim(const string &str) {
-    string s(str);
+std::string trim(const std::string& s) {
+    auto is_not_space = [](unsigned char c) { return !std::isspace(c); };
 
-    s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
-    );
+    auto first = std::find_if(s.begin(), s.end(), is_not_space);
+    auto last = std::find_if(s.rbegin(), s.rend(), is_not_space).base();
 
-    return s;
+    return (first < last) ? std::string(first, last) : std::string();
 }
 
-string rtrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
-        s.end()
-    );
-
-    return s;
-}
-
+// string ltrim(const string &str) {
+//     string s(str);
+//
+//     s.erase(
+//         s.begin(),
+//         find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
+//     );
+//
+//     return s;
+// }
+//
+// string rtrim(const string &str) {
+//     string s(str);
+//
+//     s.erase(
+//         find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+//         s.end()
+//     );
+//
+//     return s;
+// }
+//
 vector<string> split(const string &str) {
     vector<string> tokens;
 
