@@ -228,7 +228,8 @@ bool check_005()
     if constexpr (check_005_enabled)
     {
         constexpr double eps = 1e-6;
-        auto acc = accumulator(0.0, [count = 0, sum = 0.0](auto _, auto rhs) mutable {
+        auto acc = accumulator(0.0, [count = 0, sum = 0.0](auto val, auto rhs) mutable {
+			val = val + 0;
             sum += rhs;
             count++;
             return sum / count;
