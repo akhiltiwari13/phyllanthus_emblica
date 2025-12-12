@@ -9,11 +9,11 @@ from conan import ConanFile
 class PhyllanthusEmblicaRecepie(ConanFile):
     name = "phyllanthus-emblica"
     version = "0.1"
-    user = "akhiltiwari13"
+    author = "akhiltiwari13"
 
     # Package metadata
     description = "HFT Engineer/ Quant Real-World Interview problems collections"
-    topics = ("boost", "conan", "cmake", "cpp20")
+    topics = ("boost", "conan", "cmake", "cpp20", "cpp23")
     license = "MIT"
 
     # Binary configuration
@@ -22,29 +22,13 @@ class PhyllanthusEmblicaRecepie(ConanFile):
     def requirements(self):
         self.requires("boost/[~1.88]")
         self.requires("yaml-cpp/[~0.8]")
+        self.requires("fmt/[~12.0]", override=True, force=True)
+        self.requires("nlohmann_json/[>=3.12.0]")  # used by infra::events
+        self.requires("benchmark/[>=1.8.5]")
+        self.requires("gtest/[>=1.16.0 <2.0]")
 
     def build_requirements(self):
-        self.tool_requires("cmake/[>=3.30 <4.0]")
-
-    def configure(self):
-        check_min_cppstd(self, 23)
-
-    def validate(self):
-        # Validate compiler support for C++20
-        if (
-            self.settings.compiler == "gcc"
-            and Version(self.settings.compiler.version) < "10"
-        ):
-            raise ConanInvalidConfiguration(
-                "GCC 10 or higher is required for C++23 support"
-            )
-        if (
-            self.settings.compiler == "clang"
-            and Version(self.settings.compiler.version) < "12"
-        ):
-            raise ConanInvalidConfiguration(
-                "Clang 12 or higher is required for C++23 support"
-            )
+        self.tool_requires("cmake/[>=3.30 <4.4]")
 
     def layout(self):
         cmake_layout(self)
@@ -63,8 +47,3 @@ class PhyllanthusEmblicaRecepie(ConanFile):
         tc.variables["CMAKE_CXX_EXTENSIONS"] = "OFF"
 
         tc.generate()
-
-    def package_info(self):
-        # Set package information for consumers
-        self.cpp_info.libs = ["boost-applications"]
-        self.cpp_info.cppstd = "23"

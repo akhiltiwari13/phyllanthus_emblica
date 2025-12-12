@@ -13,9 +13,9 @@ else()
 	message(status "Building on an unsupported/untested platform.")
 endif()
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# set(CMAKE_CXX_STANDARD 17)
+# set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic")
 
 find_package(yaml-cpp REQUIRED)

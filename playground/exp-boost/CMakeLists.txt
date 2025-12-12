@@ -1,8 +1,13 @@
-find_package(Boost REQUIRED)
+find_package(Boost REQUIRED COMPONENTS boost)
 
+# TODO:: don't link all boost libs to executable, just the required componnets.
 add_executable(boost_asio boost_asio.cpp)
-target_link_libraries(boost_asio boost::boost)
+target_link_libraries(boost_asio Boost::boost)
 
 
 add_executable(boost_ipc boost_ipc.cpp)
-target_link_libraries(boost_ipc boost::boost)
+target_link_libraries(boost_ipc Boost::boost)
+# target_link_libraries(boost_ipc Boost::interprocess)
+
+add_executable(boost_ptree boost_ptree.cpp)
+target_link_libraries(boost_ptree Boost::boost)
