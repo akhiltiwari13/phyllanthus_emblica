@@ -1,4 +1,5 @@
 
+// #include <boost/log/trivial.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/ptree_fwd.hpp>
 #include <iostream>
@@ -32,5 +33,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
     std::cout << "node.first: " << node.first
               << " node.second: " << node.second.get_value<int>() << std::endl;
   }
+  // BOOST_LOG_TRIVIAL(info) << "Trivial Log! boost it?";
+
   return 0;
 }
