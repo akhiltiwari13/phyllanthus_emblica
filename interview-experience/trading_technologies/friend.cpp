@@ -6,28 +6,27 @@
 #include <vector>
 
 class Friend {
-public:
-  std::vector<Friend *> friends;
+ public:
+  std::vector<Friend*> friends;
 
   Friend(std::string email) { this->email = email; }
 
-  void addFriendship(Friend *target) {
+  void addFriendship(Friend* target) {
     friends.push_back(target);
     target->friends.push_back(this);
   }
 
-  bool canBeConnected(Friend *target) {
+  bool canBeConnected(Friend* target) {
     bool rslt = false;
     if (this == target) {
       return true;
     } else if (this->isNeighbour(target))
       return true;
     else {
-      std::unordered_set<Friend *> visited;
+      std::unordered_set<Friend*> visited;
       visited.emplace(this);
       for (auto v : this->friends) {
-        if (visited.count(v))
-          continue;
+        if (visited.count(v)) continue;
         visited.emplace(v);
         rslt = v->canBeConnected(target);
       }
@@ -35,9 +34,9 @@ public:
     }
   }
 
-private:
+ private:
   std::string email;
-  bool isNeighbour(Friend *target) {
+  bool isNeighbour(Friend* target) {
     if (std::find(begin(friends), end(friends), target) != end(friends))
       return true;
     return false;

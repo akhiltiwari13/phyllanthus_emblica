@@ -1,15 +1,15 @@
 #include <ConfigParser.h>
+#include <yaml-cpp/yaml.h>
+
+#include <boost/log/trivial.hpp>
+#include <boost/log/utility/setup/common_attributes.hpp>
+#include <boost/log/utility/setup/file.hpp>
 #include <fstream>
 #include <iostream>
-#include <yaml-cpp/yaml.h>
-#include <boost/log/trivial.hpp>
-#include <boost/log/utility/setup/file.hpp>
-#include <boost/log/utility/setup/common_attributes.hpp>
-
 
 namespace sim::cfg {
-SimulationConfig ConfigParser::parseConfig(const std::string &configFile,
-                                           SimulationConfig &config) {
+SimulationConfig ConfigParser::parseConfig(const std::string& configFile,
+                                           SimulationConfig& config) {
   // Parse the YAML configuration file
   YAML::Node root = YAML::LoadFile(configFile);
 
@@ -23,13 +23,13 @@ SimulationConfig ConfigParser::parseConfig(const std::string &configFile,
 
   // Parse algorithm configs
   YAML::Node algoNode = root["Simulation"]["Algo"];
-  for (const auto &it : algoNode) {
+  for (const auto& it : algoNode) {
     AlgorithmConfig algoConfig;
     algoConfig.algoName = it.second["Algoname"].as<std::string>();
 
     // Parse algorithm parameters
     YAML::Node paramNode = it.second;
-    for (const auto &param : paramNode) {
+    for (const auto& param : paramNode) {
       if (param.first.as<std::string>() != "Algoname") {
         algoConfig.parameters[param.first.as<std::string>()] =
             param.second.as<std::string>();
@@ -74,4 +74,4 @@ void ConfigParser::logConfig() const {
 }
 
 SimulationConfig& ConfigParser::getConfig() { return simCfg; }
-}
+}  // namespace sim::cfg

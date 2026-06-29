@@ -7,16 +7,16 @@
 //
 //
 //
-#include <vector>
-#include <mutex>
 #include <iostream>
+#include <mutex>
 #include <thread>
+#include <vector>
 
 using namespace std;
 
-template <typename T> class TSCircBuff {
-
-private:
+template <typename T>
+class TSCircBuff {
+ private:
   std::vector<T> buff;
   size_t head;
   size_t tail;
@@ -24,13 +24,17 @@ private:
   bool full;
   std::mutex mtx;
 
-public:
+ public:
   // comp functions
   explicit TSCircBuff()
       : head(0), tail(0), capacity(1), full(false), buff(std::vector<T>(1)) {}
 
   explicit TSCircBuff(size_t capacity)
-      : head(0), tail(0), capacity(capacity), full(false), buff(std::vector<T>(capacity)) {}
+      : head(0),
+        tail(0),
+        capacity(capacity),
+        full(false),
+        buff(std::vector<T>(capacity)) {}
 
   bool enque(T obj) {
     std::lock_guard<std::mutex> lock(mtx);
@@ -58,16 +62,15 @@ public:
     return true;
   }
 
-  bool is_full() {
-    return full; }
+  bool is_full() { return full; }
 
-  T &find(size_t idx){
+  T& find(size_t idx) {
     std::lock_guard<std::mutex> lock(mtx);
     // check index's valididty
     return buff[idx];
   }
 
-  bool is_empty(){
+  bool is_empty() {
     std::lock_guard<std::mutex> lock(mtx);
     // check index's valididty
     return buff[idx];
@@ -77,13 +80,14 @@ public:
   // void erase();
 };
 
-int main(int argc, char *argv[]) {
-
+int main(int argc, char* argv[]) {
   // producer & consumer
   //
   TSCircBuff<int> cqueue(5);
   auto val = cqueue.enque(1);
-  val = cqueue.enque(2); val =  cqueue.enque(6); val =   cqueue.enque(6);
+  val = cqueue.enque(2);
+  val = cqueue.enque(6);
+  val = cqueue.enque(6);
 
-      return 0;
+  return 0;
 }

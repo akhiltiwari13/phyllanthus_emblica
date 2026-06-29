@@ -10,19 +10,19 @@
 #include <thread>
 #include <vector>
 
-void funct_with_nap([[maybe_unused]] const std::error_code &e) {
+void funct_with_nap([[maybe_unused]] const std::error_code& e) {
   std::this_thread::sleep_for(std::chrono::seconds(5));
   std::cout << "Hello World, from funct after a nap()" << std::endl;
 }
 
-int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
+int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
   asio::io_context ioc;
 
   int sec = 3;
 
   // example1. synchronous timer
   asio::steady_timer t(ioc, std::chrono::seconds(sec));
-  t.wait(); // blocking wait
+  t.wait();  // blocking wait
   // ioc run is not needed in the sync timer.
   std::cout << "Hello World from main0." << std::endl;
 
@@ -36,7 +36,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
   // asynchronous wait on the timer, so the call will not return until the timer
   // has expired and the completion handler has returned.
   asio::steady_timer tasync(ioc, std::chrono::seconds(5));
-  tasync.async_wait(&funct_with_nap); // non blocking wait
+  tasync.async_wait(&funct_with_nap);  // non blocking wait
   ioc.run();
   std::cout << "Hello World from main1." << std::endl;
 

@@ -11,18 +11,18 @@
 // 4. Parser::Iterator it = parsr.begin() => a copy constructor for Parser's
 // iterator
 class Parser {
-public:
-  class Iterator; // fwd declaration to return Iterator obj from begin() &&
-                  // end()
+ public:
+  class Iterator;  // fwd declaration to return Iterator obj from begin() &&
+                   // end()
 
-  Parser(std::ifstream &filestream) {
+  Parser(std::ifstream& filestream) {
     std::string line;
     int num{};
 
     while (getline(filestream, line)) {
       std::stringstream iss(line);
-      if (iss >> num && iss.eof()) { // extract interger form stream && check if
-                                     // reached the end of stream.
+      if (iss >> num && iss.eof()) {  // extract interger form stream && check
+                                      // if reached the end of stream.
         numbers.push_back(num);
       }
       iss.clear();
@@ -34,24 +34,24 @@ public:
   Iterator end() { return Iterator(numbers.end()); }
 
   class Iterator {
-  public:
+   public:
     Iterator(std::vector<int>::iterator it) : vit(it) {}
 
-    int &operator*() { return *vit; }
+    int& operator*() { return *vit; }
 
-    Iterator &operator++() {
+    Iterator& operator++() {
       vit++;
       return *this;
     }
 
-    bool operator!=(const Iterator &other) { return vit != other.vit; }
+    bool operator!=(const Iterator& other) { return vit != other.vit; }
 
-  private:
+   private:
     std::vector<int>::iterator vit;
   };
 
-private:
-  std::vector<int> numbers{}; // this vector will store the parsed integers.
+ private:
+  std::vector<int> numbers{};  // this vector will store the parsed integers.
 };
 
 // test function
@@ -68,4 +68,3 @@ int main() {
   inputFile.close();
   return 0;
 }
-

@@ -1,8 +1,9 @@
 #include <iostream>
 
 /* MyVector Implementation. */
-template <typename T> class MyVector {
-public:
+template <typename T>
+class MyVector {
+ public:
   /* default constructor */
   MyVector() : size_(0), capacity_(1), data_{new T[1]} {}
 
@@ -17,8 +18,9 @@ public:
    * object as a copy of an existing object. It takes a single argument, which
    * is a const reference to an object of the same type as the object being
    * constructed. */
-  MyVector(const MyVector<T> &obj)
-      : size_(obj.size_), capacity_(obj.capacity_),
+  MyVector(const MyVector<T>& obj)
+      : size_(obj.size_),
+        capacity_(obj.capacity_),
         data_{new T[obj.capacity_]} {
     std::cout << "copy constructor" << std::endl;
     for (auto i = 0; i < capacity_; ++i) {
@@ -31,10 +33,10 @@ public:
    * assign the value of one object to another object of the same type. It takes
    * a single argument, which is a const reference to an object of the same type
    * as the object being assigned to. */
-  MyVector &operator=(const MyVector<T> &rhs) {
+  MyVector& operator=(const MyVector<T>& rhs) {
     /* check if the two objects are not already same. */
     if (this != &rhs) {
-      delete[] data_; // free existing values.
+      delete[] data_;  // free existing values.
 
       capacity_ = rhs.capacity_;
       size_ = rhs.size_;
@@ -61,8 +63,9 @@ public:
 
   /* move constructor's parameter is not a const since the ownership of it's
    * resources would be transferred. */
-  MyVector(MyVector<T> &&other)
-      : size_(std::move(other.size_)), capacity_(std::move(other.capacity_)),
+  MyVector(MyVector<T>&& other)
+      : size_(std::move(other.size_)),
+        capacity_(std::move(other.capacity_)),
         data_(new T[other.capacity_]) {
     std::cout << "move constructor" << std::endl;
     for (auto i = 0; i < capacity_; ++i) {
@@ -82,7 +85,7 @@ public:
    * assignment. It is used to reassign the contents of an existing object by
    * moving the resources from the right-hand side (RHS) object to the left-hand
    * side (LHS) object. */
-  MyVector &operator=(MyVector<T> &&rhs) {
+  MyVector& operator=(MyVector<T>&& rhs) {
     if (this != &rhs) {
       delete[] data_;
 
@@ -103,7 +106,7 @@ public:
   }
 
   // push_back
-  void push_back(const T &val) { data_[size_++] = val; }
+  void push_back(const T& val) { data_[size_++] = val; }
 
   // emplace_back
   // @todo: ?
@@ -115,18 +118,18 @@ public:
 
   size_t Capacity() { return capacity_; }
 
-  T &at(size_t idx) { return data_[idx]; }
+  T& at(size_t idx) { return data_[idx]; }
 
-  T &operator[](size_t idx) { return data_[idx]; }
+  T& operator[](size_t idx) { return data_[idx]; }
 
-private:
-  T *data_;
+ private:
+  T* data_;
   std::size_t capacity_{0};
   std::size_t size_{0};
 };
 
 // test MyVector
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   MyVector<int> mvec0{};
   mvec0.push_back(34);
 

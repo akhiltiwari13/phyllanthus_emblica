@@ -1,16 +1,16 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-#include <unordered_map>
 #include <algorithm>
-#include <functional>
 #include <cctype>
+#include <fstream>
+#include <functional>
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
-string ltrim(const string &);
-string rtrim(const string &);
+string ltrim(const string&);
+string rtrim(const string&);
 
 /*
  * Complete the 'itemsSort' function below.
@@ -31,62 +31,61 @@ vector<int> itemsSort(vector<int> items) {
   vector<pair<int, int>> freqVec;
   for (auto itr : items) {
     cache[itr]++;
-}
-for(auto itr : cache) {
+  }
+  for (auto itr : cache) {
     freqVec.push_back({itr.first, itr.second});
-}
+  }
 
-sort(freqVec.begin(), freqVec.end(), sortFunc);
-vector<int> sortedArr;
-for(auto it : freqVec) {
-    for(int i=0; i<it.second; i++) {
-        sortedArr.push_back(it.first);
+  sort(freqVec.begin(), freqVec.end(), sortFunc);
+  vector<int> sortedArr;
+  for (auto it : freqVec) {
+    for (int i = 0; i < it.second; i++) {
+      sortedArr.push_back(it.first);
     }
+  }
+
+  return sortedArr;
 }
 
-return sortedArr;
-}
+int main() {
+  ofstream fout(getenv("OUTPUT_PATH"));
 
-int main()
-{
-    ofstream fout(getenv("OUTPUT_PATH"));
+  string items_count_temp;
+  getline(cin, items_count_temp);
 
-    string items_count_temp;
-    getline(cin, items_count_temp);
+  int items_count = stoi(ltrim(rtrim(items_count_temp)));
 
-    int items_count = stoi(ltrim(rtrim(items_count_temp)));
+  vector<int> items(items_count);
 
-    vector<int> items(items_count);
+  for (int i = 0; i < items_count; i++) {
+    string items_item_temp;
+    getline(cin, items_item_temp);
 
-    for (int i = 0; i < items_count; i++) {
-        string items_item_temp;
-        getline(cin, items_item_temp);
+    int items_item = stoi(ltrim(rtrim(items_item_temp)));
 
-        int items_item = stoi(ltrim(rtrim(items_item_temp)));
+    items[i] = items_item;
+  }
 
-        items[i] = items_item;
+  vector<int> result = itemsSort(items);
+
+  for (size_t i = 0; i < result.size(); i++) {
+    fout << result[i];
+
+    if (i != result.size() - 1) {
+      fout << "\n";
     }
+  }
 
-    vector<int> result = itemsSort(items);
+  fout << "\n";
 
-    for (size_t i = 0; i < result.size(); i++) {
-        fout << result[i];
+  fout.close();
 
-        if (i != result.size() - 1) {
-            fout << "\n";
-        }
-    }
-
-    fout << "\n";
-
-    fout.close();
-
-    return 0;
+  return 0;
 }
 
-//ptr_fun is not defined for mac os env.
-// string ltrim(const string &str) {
-//     string s(str);
+// ptr_fun is not defined for mac os env.
+//  string ltrim(const string &str) {
+//      string s(str);
 
 //     s.erase(
 //         s.begin(),
@@ -100,30 +99,24 @@ int main()
 //     string s(str);
 
 //     s.erase(
-//         find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
-//         s.end()
+//         find_if(s.rbegin(), s.rend(), not1(ptr_fun<int,
+//         int>(isspace))).base(), s.end()
 //     );
 
 //     return s;
 // }
 
 string ltrim(const string& str) {
-    string s(str);
-    s.erase(s.begin(), find_if(s.begin(), s.end(),
-        [](int c) {
-            return !isspace(c);
-        }
-    ));
-    return s;
+  string s(str);
+  s.erase(s.begin(),
+          find_if(s.begin(), s.end(), [](int c) { return !isspace(c); }));
+  return s;
 }
 
 string rtrim(const string& str) {
-    string s(str);
-    s.erase(find_if(s.rbegin(), s.rend(),
-        [](int c) {
-            return !isspace(c);
-        }
-    ).base(), s.end());
-    return s;
+  string s(str);
+  s.erase(
+      find_if(s.rbegin(), s.rend(), [](int c) { return !isspace(c); }).base(),
+      s.end());
+  return s;
 }
-

@@ -26,14 +26,14 @@ this approach is correct however I could not figure out any corner cases for
 
 // ======================================================
 #include <algorithm>
-#include <vector>
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
-string ltrim(const string &);
-string rtrim(const string &);
+string ltrim(const string&);
+string rtrim(const string&);
 
 /*
  * Complete the 'countMaximumDays' function below.
@@ -54,7 +54,7 @@ int countMaximumDays(vector<int> lend, vector<int> payback) {
 
   int days = 0;
   int debt = 0;
-  for (const auto &lender : lenders) {
+  for (const auto& lender : lenders) {
     if (debt > lender.first) {
       break;
     }
@@ -109,7 +109,7 @@ int main() {
   return 0;
 }
 
-string ltrim(const string &str) {
+string ltrim(const string& str) {
   string s(str);
 
   s.erase(s.begin(), find_if(s.begin(), s.end(), [](char c) {
@@ -119,7 +119,7 @@ string ltrim(const string &str) {
   return s;
 }
 
-string rtrim(const string &str) {
+string rtrim(const string& str) {
   string s(str);
 
   s.erase(

@@ -1,8 +1,9 @@
-#include <cmath>
 #include <fmt/color.h>
 #include <fmt/format.h>
+
+#include <cmath>
 #include <iostream>
-int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
+int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
   fmt::print("hello world\n");
   for (int i = 0; i < 10; ++i) {
     for (int j = 0; j < 10; ++j) {

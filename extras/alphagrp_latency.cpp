@@ -22,7 +22,7 @@ struct AckData {
 };
 
 // Function to extract substrings based on a delimiter
-std::vector<std::string> split(const std::string &str, char delim) {
+std::vector<std::string> split(const std::string& str, char delim) {
   std::vector<std::string> tokens;
   std::stringstream ss(str);
   std::string token;
@@ -33,10 +33,10 @@ std::vector<std::string> split(const std::string &str, char delim) {
 }
 
 // Function to safely convert a string to a long long, with error handling
-long long safe_stoll(const std::string &str) {
+long long safe_stoll(const std::string& str) {
   try {
     return std::stoll(str);
-  } catch (const std::exception &e) {
+  } catch (const std::exception& e) {
     std::cerr << "Conversion error: " << e.what() << " for string: " << str
               << std::endl;
     return 0;
@@ -44,10 +44,10 @@ long long safe_stoll(const std::string &str) {
 }
 
 // Function to safely convert a string to an int, with error handling
-int safe_stoi(const std::string &str) {
+int safe_stoi(const std::string& str) {
   try {
     return std::stoi(str);
-  } catch (const std::exception &e) {
+  } catch (const std::exception& e) {
     std::cerr << "Conversion error: " << e.what() << " for string: " << str
               << std::endl;
     return 0;
@@ -89,13 +89,13 @@ int main() {
 
   // Sort the latencies based on request timestamp
   std::sort(latencies.begin(), latencies.end(),
-            [](const AckData &a, const AckData &b) {
+            [](const AckData& a, const AckData& b) {
               return a.requestTimestamp < b.requestTimestamp;
             });
 
   // Print the count of latencies and each latency in the specified format
   std::cout << latencies.size() << std::endl;
-  for (const auto &ack : latencies) {
+  for (const auto& ack : latencies) {
     std::cout << ack.requestTimestamp << ',' << ack.ackLatency << ','
               << ack.subType << ',' << ack.symbol << ',' << ack.orderId
               << std::endl;

@@ -13,77 +13,86 @@
 
 using namespace std;
 
-/* Parse the input to form the graph. The graph can be represented as an adjacency list where each node has a list of neighbors and the corresponding weights. */
-/* Parse the second line to get the starting node, ending node, and maximum allowed time. */
-/* Implement Dijkstra's algorithm to find the shortest path. Make sure to keep track of the path and check against the maximum allowed travel time. */
-/* Check for input syntax errors and logical errors during the parsing phase and during the shortest path finding phase. */
-/* If the shortest path is found, print the route using the described representation. */
-/* If there are errors or the shortest path is not found, print the corresponding error code. */
+/* Parse the input to form the graph. The graph can be represented as an
+ * adjacency list where each node has a list of neighbors and the corresponding
+ * weights. */
+/* Parse the second line to get the starting node, ending node, and maximum
+ * allowed time. */
+/* Implement Dijkstra's algorithm to find the shortest path. Make sure to keep
+ * track of the path and check against the maximum allowed travel time. */
+/* Check for input syntax errors and logical errors during the parsing phase and
+ * during the shortest path finding phase. */
+/* If the shortest path is found, print the route using the described
+ * representation. */
+/* If there are errors or the shortest path is not found, print the
+ * corresponding error code. */
 
 namespace app {
 class Sol {
-public:
-  void ParseLine(const string &line, unsigned int lineCount) {
+ public:
+  void ParseLine(const string& line, unsigned int lineCount) {
     switch (lineCount) {
-    case 0: {
-      regex pattern("[\\[]([A-Z]),([A-Z]),(\\d+)[\\]]");
-      const string delim(" ");
-      string::size_type begIdx{}, endIdx{};
-      begIdx = line.find_first_not_of(delim);
+      case 0: {
+        regex pattern("[\\[]([A-Z]),([A-Z]),(\\d+)[\\]]");
+        const string delim(" ");
+        string::size_type begIdx{}, endIdx{};
+        begIdx = line.find_first_not_of(delim);
 
-      while (begIdx != string::npos) {
-        endIdx = line.find_first_of(delim, begIdx);
+        while (begIdx != string::npos) {
+          endIdx = line.find_first_of(delim, begIdx);
 
-        if (endIdx == string::npos) {
-          endIdx = line.length();
+          if (endIdx == string::npos) {
+            endIdx = line.length();
+          }
+
+          /* process each word. */
+          /* report error E1 for input format errors. */
+          /* report error E2 for logical input errors. */
+          auto pMatch =
+              hasProperFormat(line.substr(begIdx, (endIdx - begIdx)), pattern);
+          if (pMatch.first) {
+            constructGraph(pMatch.second);
+          } else {
+            cout << "E1" << std::endl;
+            exit(0);
+          }
+
+          begIdx = line.find_first_not_of(delim, endIdx);
         }
 
-        /* process each word. */
-        /* report error E1 for input format errors. */
-        /* report error E2 for logical input errors. */
-        auto pMatch =
-            hasProperFormat(line.substr(begIdx, (endIdx - begIdx)), pattern);
-        if (pMatch.first) {
-          constructGraph(pMatch.second);
-        } else {
+      } break;
+      case 1: {
+        regex pattern("([A-Z])->([A-Z]),(\\d+)");
+        smatch match;
+        bool mresult = regex_match(line, match, pattern);
+        if (!mresult) {
           cout << "E1" << std::endl;
           exit(0);
+        } else {
+          /* get start node, destination & max_allowed_time. */
+          source = match[1].str()[0];
+          destination = match[2].str()[0];
+          maxAllowedTime = stoi(match[3].str());
+
+          if (!adjacencyList.count(source) ||
+              !adjacencyList.count(destination)) {
+            cout << "E2" << std::endl;
+            exit(0);
+          }
         }
-
-        begIdx = line.find_first_not_of(delim, endIdx);
-      }
-
-    } break;
-    case 1: {
-      regex pattern("([A-Z])->([A-Z]),(\\d+)");
-      smatch match;
-      bool mresult = regex_match(line, match, pattern);
-      if (!mresult) {
-        cout << "E1" << std::endl;
+      } break;
+      default: {
+        /* input should have only 2 lines, else throw Input syntax error and
+         * exit.
+         */
+        cout << "E1" << endl;
         exit(0);
-      } else {
-        /* get start node, destination & max_allowed_time. */
-        source = match[1].str()[0];
-        destination = match[2].str()[0];
-        maxAllowedTime = stoi(match[3].str());
-
-        if (!adjacencyList.count(source) || !adjacencyList.count(destination)) {
-          cout << "E2" << std::endl;
-          exit(0);
-        }
-      }
-    } break;
-    default: {
-      /* input should have only 2 lines, else throw Input syntax error and exit.
-       */
-      cout << "E1" << endl;
-      exit(0);
-    } break;
+      } break;
     }
   }
 
   void FindShortestPath() {
-      std::cout<<"[DEBUG] executing  FindShortestPath()..."<<std::endl;
+    std::cout << "[DEBUG] executing  FindShortestPath()..." << std::endl;
     /* auxilary data-structure for finding shortest path using Dijkstras
      * algorithm */
     unordered_map<char, unsigned int> minTime;
@@ -116,9 +125,8 @@ public:
     }
 
     auto result = minTime[destination];
-    cout<<"[DEBUG] minimum time= "<<minTime[destination]<<endl;
+    cout << "[DEBUG] minimum time= " << minTime[destination] << endl;
     if (result <= maxAllowedTime) {
-
       std::vector<char> path;
 
       char nd = destination;
@@ -130,8 +138,7 @@ public:
       reverse(path.begin(), path.end());
       for (auto n : path) {
         cout << n;
-        if (n != destination)
-          cout << "->";
+        if (n != destination) cout << "->";
       }
       std::cout << std::endl;
     } else {
@@ -152,7 +159,7 @@ public:
     }
   }
 
-private:
+ private:
   /* using adjacency list for graph representation. */
   unordered_map<char, unordered_map<char, unsigned int>> adjacencyList;
   char source, destination;
@@ -160,15 +167,14 @@ private:
 
   void out(bool b) { cout << (b ? "found" : "not found") << endl; }
 
-  pair<bool, smatch> hasProperFormat(const string &str, regex &pattern) {
-
+  pair<bool, smatch> hasProperFormat(const string& str, regex& pattern) {
     smatch match;
     bool result = regex_match(str, match, pattern);
 
     return make_pair(result, match);
   }
 
-  void constructGraph(smatch &match) {
+  void constructGraph(smatch& match) {
     auto sourceNode = match[1].str()[0];
     auto destinationNode = match[2].str()[0];
     unsigned int weight = stoul(match[3].str());
@@ -183,7 +189,7 @@ private:
   }
 };
 
-} // namespace app
+}  // namespace app
 
 int main() {
   freopen("input.txt", "r", stdin);

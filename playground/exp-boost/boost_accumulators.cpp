@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace boost::accumulators;
 
-int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
+int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
   // Define an accumulator set for calculating the mean and the
   // 2nd moment ...
   accumulator_set<double, stats<tag::mean, tag::moment<2>>> acc;

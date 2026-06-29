@@ -1,11 +1,13 @@
 // #include "Simulator.h"
 #include <config_parser/ConfigParser.h>
-#include "DataReader.h"
+
+#include <boost/log/expressions.hpp>
 #include <boost/log/support/date_time.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/log/utility/setup/common_attributes.hpp>
 #include <boost/log/utility/setup/file.hpp>
-#include <boost/log/expressions.hpp>
+
+#include "DataReader.h"
 
 namespace logging = boost::log;
 namespace expr = boost::log::expressions;
@@ -44,7 +46,7 @@ int main() {
   sim::dreader::DataReader dr{};
   dr.printPriceData();
 
-//   Simulator::runSimulation(configFile, inputDataFile, outputFile);
+  //   Simulator::runSimulation(configFile, inputDataFile, outputFile);
 
   return 0;
 }

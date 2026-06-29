@@ -6,12 +6,12 @@
 using asio::ip::tcp;
 
 class Session : public std::enable_shared_from_this<Session> {
-public:
+ public:
   Session(tcp::socket socket) : socket_(std::move(socket)) {}
 
   void start() { do_read(); }
 
-private:
+ private:
   void do_read() {
     auto self(shared_from_this());
     socket_.async_read_some(
@@ -39,13 +39,13 @@ private:
 };
 
 class Server {
-public:
-  Server(asio::io_context &io_context, short port)
+ public:
+  Server(asio::io_context& io_context, short port)
       : acceptor_(io_context, tcp::endpoint(tcp::v4(), port)) {
     do_accept();
   }
 
-private:
+ private:
   void do_accept() {
     acceptor_.async_accept([this](std::error_code ec, tcp::socket socket) {
       if (!ec) {
@@ -58,12 +58,12 @@ private:
   tcp::acceptor acceptor_;
 };
 
-int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
+int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
   try {
     asio::io_context io_context;
     Server server(io_context, 8080);
     io_context.run();
-  } catch (std::exception &e) {
+  } catch (std::exception& e) {
     std::cerr << "Exception: " << e.what() << "\n";
   }
   return 0;

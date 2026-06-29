@@ -11,18 +11,17 @@
 // std::unrodered_map<parent,unordered_set<children>>
 
 int getSizeDFS(
-    const std::unordered_map<int, std::unordered_set<int>> &adjacenyList,
-    int root, std::unordered_set<int> &visited) {
+    const std::unordered_map<int, std::unordered_set<int>>& adjacenyList,
+    int root, std::unordered_set<int>& visited) {
   if (visited.find(root) != visited.end()) {
     return 0;
   } else {
     int count{1};
-    visited.insert(root); // mark node as visited.
+    visited.insert(root);  // mark node as visited.
 
     // visit all child nodes of the current root
     if (adjacenyList.find(root) != adjacenyList.end()) {
-
-      for (auto &child : adjacenyList.at(root)) {
+      for (auto& child : adjacenyList.at(root)) {
         count += getSizeDFS(adjacenyList, child, visited);
       }
     }
@@ -32,22 +31,22 @@ int getSizeDFS(
 }
 
 /* argument map has {child,parent} pair */
-int largestTree(const std::unordered_map<int, int> &immediateParent) {
+int largestTree(const std::unordered_map<int, int>& immediateParent) {
   /* to return the id of the root of largest tree!! */
   std::unordered_set<int> roots;
   int max_size{0};
   std::unordered_map<int, std::unordered_set<int>> adjacencyList;
 
-  for (auto &itr : immediateParent) {
+  for (auto& itr : immediateParent) {
     adjacencyList[itr.second].insert(itr.first);
   }
 
-  for (auto &itr : immediateParent) {
+  for (auto& itr : immediateParent) {
     roots.insert(itr.second);
   }
 
   // set of all roots. & create the adjacency list representation.
-  for (auto &itr : immediateParent) {
+  for (auto& itr : immediateParent) {
     if (roots.find(itr.first) != roots.end()) {
       roots.erase(itr.first);
     }
@@ -67,15 +66,20 @@ int largestTree(const std::unordered_map<int, int> &immediateParent) {
 
 bool doTestsPass() {
   std::vector<std::pair<std::unordered_map<int, int>, int>> testCases = {
-      {{{1, 2}, {2, 3}, {3, 4}}, 4},                // Single tree, 4 nodes
-      {{{1, 2}, {2, 3}, {4, 5}}, 3},                // Two trees: one of size 3, another of size 2
-      {{{1, 2}, {4, 5}, {5, 6}}, 6},                // Two trees: one of size 2, another of size 3
-      {{{1, 2}}, 2},                                // Single tree, 2 nodes
-      {{{1, 2}, {3, 4}, {5, 6}, {7, 8}}, 2},        // Four separate trees of size 2 each
-      {{}, 0},                                      // Empty map, should return 0
-      {{{10, 20}, {20, 30}, {30, 40}, {40, 50}, {60, 70}, {70, 80}}, 50},    // One large tree and a smaller one
-      {{{1, 10}, {2, 20}, {3, 30}}, 10},             // Three separate trees of size 2 each
-      {{{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {7, 8}}, 8}         // Single large tree
+      {{{1, 2}, {2, 3}, {3, 4}}, 4},  // Single tree, 4 nodes
+      {{{1, 2}, {2, 3}, {4, 5}},
+       3},  // Two trees: one of size 3, another of size 2
+      {{{1, 2}, {4, 5}, {5, 6}},
+       6},            // Two trees: one of size 2, another of size 3
+      {{{1, 2}}, 2},  // Single tree, 2 nodes
+      {{{1, 2}, {3, 4}, {5, 6}, {7, 8}},
+       2},      // Four separate trees of size 2 each
+      {{}, 0},  // Empty map, should return 0
+      {{{10, 20}, {20, 30}, {30, 40}, {40, 50}, {60, 70}, {70, 80}},
+       50},                               // One large tree and a smaller one
+      {{{1, 10}, {2, 20}, {3, 30}}, 10},  // Three separate trees of size 2 each
+      {{{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}, {6, 7}, {7, 8}}, 8}
+      // Single large tree
   };
 
   bool passed = true;
@@ -91,7 +95,6 @@ bool doTestsPass() {
 }
 
 int main() {
-
   /* run the tests. */
   if (doTestsPass()) {
     std::cout << "ALL TESTS PASS." << std::endl;

@@ -63,16 +63,17 @@
 //
 //     return 0;
 // }
-#include "tracy/Tracy.hpp"
 #include <thread>
 
+#include "tracy/Tracy.hpp"
+
 int main() {
-    // tracy::SetThreadName("Main Thread");
-    while(true) {
-        FrameMark;
-        {
-            ZoneScopedN("Work");
-            std::this_thread::sleep_for(std::chrono::milliseconds(16));
-        }
+  // tracy::SetThreadName("Main Thread");
+  while (true) {
+    FrameMark;
+    {
+      ZoneScopedN("Work");
+      std::this_thread::sleep_for(std::chrono::milliseconds(16));
     }
+  }
 }

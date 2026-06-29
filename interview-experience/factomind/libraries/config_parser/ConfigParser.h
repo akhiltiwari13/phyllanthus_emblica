@@ -21,16 +21,16 @@ struct SimulationConfig {
 };
 
 class ConfigParser {
-private:
+ private:
   SimulationConfig simCfg;
 
-public:
-  static SimulationConfig parseConfig(const std::string &configFile,
-                                      SimulationConfig &config);
+ public:
+  static SimulationConfig parseConfig(const std::string& configFile,
+                                      SimulationConfig& config);
   void logConfig() const;
-  SimulationConfig &getConfig();
+  SimulationConfig& getConfig();
 };
 
-} // namespace sim::cfg
+}  // namespace sim::cfg
 
-#endif // CONFIG_PARSER_H
+#endif  // CONFIG_PARSER_H

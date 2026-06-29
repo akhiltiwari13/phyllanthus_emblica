@@ -1,21 +1,21 @@
+#include <data_reader/DataReader.h>
+
+#include <boost/algorithm/string.hpp>
+#include <boost/log/trivial.hpp>
+#include <boost/log/utility/setup/common_attributes.hpp>
+#include <boost/log/utility/setup/file.hpp>
+#include <boost/tokenizer.hpp>
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-#include <boost/algorithm/string.hpp>
-#include <boost/tokenizer.hpp>
-#include <boost/log/trivial.hpp>
-#include <boost/log/utility/setup/file.hpp>
-#include <boost/log/utility/setup/common_attributes.hpp>
-
-#include <data_reader/DataReader.h>
 
 namespace sim::dreader {
 
 // common::TimeSeriesData DataReader::priceData{};
 // std::vector<std::string> DataReader::symbolList{};
 
-void DataReader::readInputData(const std::string &filename) {
+void DataReader::readInputData(const std::string& filename) {
   std::ifstream file(filename);
   if (!file.is_open()) {
     std::cerr << "Failed to open file: " << filename << std::endl;
@@ -24,10 +24,10 @@ void DataReader::readInputData(const std::string &filename) {
 
   std::string line;
   std::vector<std::string> symbolList;
-  std::getline(file, line); // Parse the header line and save the symbol names;
+  std::getline(file, line);  // Parse the header line and save the symbol names;
   boost::split(symbolList, line, boost::is_any_of(","));
-  DataReader::priceData(symbolList); //initialize priceData with the list of symbols
-
+  DataReader::priceData(
+      symbolList);  // initialize priceData with the list of symbols
 
   while (std::getline(file, line)) {
     std::vector<std::string> tokens;
@@ -38,7 +38,7 @@ void DataReader::readInputData(const std::string &filename) {
       DataReader::priceData.timestamps.push_back(timestamp);
       for (size_t i = 1; i < tokens.size(); ++i) {
         std::cout << "token[i]: " << tokens[i];
-        BOOST_LOG_TRIVIAL(debug) << "tokens["<<i<<"]: "<< tokens[i];
+        BOOST_LOG_TRIVIAL(debug) << "tokens[" << i << "]: " << tokens[i];
         try {
           double price = std::stod(tokens[i]);
 
@@ -51,7 +51,7 @@ void DataReader::readInputData(const std::string &filename) {
           DataReader::priceData[timestamp].push_back(
               {static_cast<SYMBOL>(i), price});
 
-        } catch (std::invalid_argument &e) {
+        } catch (std::invalid_argument& e) {
           std::cerr << "Error: " << e.what() << "for token: " << tokens[i]
                     << " & symbol " << to_string(static_cast<SYMBOL>(i))
                     << std::endl;
@@ -64,10 +64,10 @@ void DataReader::readInputData(const std::string &filename) {
 }
 
 void DataReader::printPriceData() const {
-  for (const auto &pair : priceData) {
-    const std::string &timestamp = pair.first;
+  for (const auto& pair : priceData) {
+    const std::string& timestamp = pair.first;
     std::cout << timestamp << ": ";
-    const std::vector<std::pair<SYMBOL, double>> &symbolPrices = pair.second;
+    const std::vector<std::pair<SYMBOL, double>>& symbolPrices = pair.second;
 
     for (auto symPrice : symbolPrices) {
       std::cout << to_string(symPrice.first) << ":" << symPrice.second << "|";
@@ -77,4 +77,4 @@ void DataReader::printPriceData() const {
 }
 
 common::TimeSeriesData DataReader::getPriceData() const { return priceData; }
-} // namespace sim::dreader
+}  // namespace sim::dreader

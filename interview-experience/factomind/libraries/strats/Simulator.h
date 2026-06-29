@@ -7,10 +7,10 @@
 #include "TradingAlgo.h"
 
 class Simulator {
-public:
-  static void runSimulation(const std::string &configFile,
-                            const std::string &inputDataFile,
-                            const std::string &outputFile);
+ public:
+  static void runSimulation(const std::string& configFile,
+                            const std::string& inputDataFile,
+                            const std::string& outputFile);
 };
 
-#endif // SIMULATOR_H
+#endif  // SIMULATOR_H

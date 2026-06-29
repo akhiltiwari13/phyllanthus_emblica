@@ -19,11 +19,11 @@
 // object is owned by a shared_ptr.
 class FunctorAsExecHandler
     : public std::enable_shared_from_this<FunctorAsExecHandler> {
-public:
-  FunctorAsExecHandler(asio::io_context &ioc, int id);
+ public:
+  FunctorAsExecHandler(asio::io_context& ioc, int id);
 
-  FunctorAsExecHandler(const FunctorAsExecHandler &) = delete;
-  FunctorAsExecHandler &operator=(const FunctorAsExecHandler &) = delete;
+  FunctorAsExecHandler(const FunctorAsExecHandler&) = delete;
+  FunctorAsExecHandler& operator=(const FunctorAsExecHandler&) = delete;
   ~FunctorAsExecHandler();
 
   // This is a utility memeber function that binds the thread to the completion
@@ -37,7 +37,7 @@ public:
 
   // Asio invokes a wait handler as void(const std::error_code&); the _1
   // placeholder forwards that code here.
-  void Print(const std::error_code &e) {
+  void Print(const std::error_code& e) {
     if (e) {
       std::println("id {} timer error: {}", id_, e.message());
       return;
@@ -45,21 +45,21 @@ public:
     std::println("id: {}", id_);
   }
 
-private:
+ private:
   int id_;
   asio::steady_timer timer_;
 };
 
-FunctorAsExecHandler::FunctorAsExecHandler(asio::io_context &ioc, int id)
+FunctorAsExecHandler::FunctorAsExecHandler(asio::io_context& ioc, int id)
     : id_(id), timer_(ioc, asio::chrono::seconds(3)) {}
 
 FunctorAsExecHandler::~FunctorAsExecHandler() {
   std::println("destroying id {}", id_);
 }
 
-int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
+int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
   asio::io_context
-      ioc; // this io  context is expected to run in the main thread!
+      ioc;  // this io  context is expected to run in the main thread!
   std::println("Hello World from main.\n");
 
   // Each handler owns a 3s timer; the pending op keeps the object alive via the

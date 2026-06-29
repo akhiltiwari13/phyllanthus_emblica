@@ -5,6 +5,4 @@
 /* project includes. */
 #include <json>
 
-namespace cap_proc {
-
-} // namespace cap_proc
+namespace cap_proc {}  // namespace cap_proc

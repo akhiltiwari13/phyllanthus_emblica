@@ -20,13 +20,13 @@ using namespace std;
 //
 
 class Sync {
-private:
+ private:
   std::queue<int> q_;
   std::mutex m_;
   std::condition_variable c_;
-  bool flag{false}; // test its requirement.
+  bool flag{false};  // test its requirement.
 
-public:
+ public:
   void push(int val) {
     {
       std::lock_guard<std::mutex> lock(m_);
@@ -35,13 +35,11 @@ public:
     c_.notify_all();
   }
 
-  bool pop(int &val) {
-
+  bool pop(int& val) {
     std::unique_lock<std::mutex> lock(m_);
     c_.wait(lock, [this] { return !q_.empty(); });
 
-    if (q_.empty())
-      return false;
+    if (q_.empty()) return false;
 
     val = std::move(q_.front());
     std::cout << "popped val: " << val << std::endl;
@@ -50,14 +48,14 @@ public:
   }
 };
 
-void producer(Sync &sq, int id, int count) {
+void producer(Sync& sq, int id, int count) {
   for (int i = 0; i < count; i++) {
     sq.push(id * 10 + i);
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
   }
 }
 
-void consumer(Sync &sq, int id) {
+void consumer(Sync& sq, int id) {
   int value;
   while (sq.pop(value)) {
     std::cout << "consumer thread:" << id << "val: " << value << std::endl;
@@ -65,7 +63,7 @@ void consumer(Sync &sq, int id) {
   }
 }
 
-int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
+int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
   Sync synced_queue;
 
   std::thread tp1(producer, std::ref(synced_queue), 1, 5);

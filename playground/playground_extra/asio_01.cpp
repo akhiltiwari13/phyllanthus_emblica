@@ -7,8 +7,8 @@
 #include <iostream>
 #include <system_error>
 
-void funct_with_args([[maybe_unused]] const std::error_code &e,
-                     asio::steady_timer *t, int *count) {
+void funct_with_args([[maybe_unused]] const std::error_code& e,
+                     asio::steady_timer* t, int* count) {
   if (*count < 5) {
     std::cout << *count << std::endl;
     ++(*count);
@@ -19,7 +19,7 @@ void funct_with_args([[maybe_unused]] const std::error_code &e,
       std::bind(funct_with_args, asio::placeholders::error, t, count));
 }
 
-int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
+int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
   asio::io_context ioc;
 
   // example3 binding args to completion handlers.

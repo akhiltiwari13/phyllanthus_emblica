@@ -1,7 +1,7 @@
+#include <algorithm>
 #include <chrono>
 #include <iostream>
 #include <thread>
-#include <algorithm>
 
 /*
    Parallel Task Processor
@@ -30,59 +30,54 @@
    */
 
 namespace app {
-    void process(std::string& s){
-        std::sort(s.begin(), s.end());
-    }
+void process(std::string& s) { std::sort(s.begin(), s.end()); }
 
-    void reverse_sort(std::string& s){
-        std::sort(s.rbegin(), s.rend());
-    }
+void reverse_sort(std::string& s) { std::sort(s.rbegin(), s.rend()); }
 
-    void output(const std::string& s){
-        std::cout<< s<< std::endl;
-    }
+void output(const std::string& s) { std::cout << s << std::endl; }
 
-    class Feeder{
-        public:
-            Feeder() = default; //use of default keyword.
-            ~Feeder() noexcept = default; //use of default keyword.
+class Feeder {
+ public:
+  Feeder() = default;            // use of default keyword.
+  ~Feeder() noexcept = default;  // use of default keyword.
 
-            void run(){
-                m_thread= std::thread([](){
-                        for(std::string line; std::getline(std::cin,line);){
-                        std::cout<< "Feeding "<< line <<std::endl;
-                        // @TODO- send to engine.
-                        }
-                        });
-            }
+  void run() {
+    m_thread = std::thread([]() {
+      for (std::string line; std::getline(std::cin, line);) {
+        std::cout << "Feeding " << line << std::endl;
+        // @TODO- send to engine.
+      }
+    });
+  }
 
-            void stop(){
-                m_thread.join();
-            }
+  void stop() { m_thread.join(); }
 
-        private:
-            std::thread m_thread;
+ private:
+  std::thread m_thread;
+};
+}  // namespace app
 
-
-    };
-}
-
-namespace framework{
-    /* @TODO: create class Engine; */
+namespace framework {
+/* @TODO: create class Engine; */
 
 }
 
 int main() {
-    auto start = std::chrono::high_resolution_clock::now();
-    // time measurement
-    {
-        app::Feeder feeder;
-        feeder.run();
+  auto start = std::chrono::high_resolution_clock::now();
+  // time measurement
+  {
+    app::Feeder feeder;
+    feeder.run();
 
-        feeder.stop();
-    }
+    feeder.stop();
+  }
 
-    auto end = std::chrono::high_resolution_clock::now();
-    std::cout<<std::endl<< "Duration:"<< std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count()<< " ns."<<std::endl;
+  auto end = std::chrono::high_resolution_clock::now();
+  std::cout << std::endl
+            << "Duration:"
+            << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start)
+                   .count()
+            << " ns." << std::endl;
 
-    return 0; }
+  return 0;
+}

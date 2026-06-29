@@ -9,20 +9,21 @@
  *
  */
 
+#include <sys/wait.h>
+
 #include <cstdlib>
 #include <iostream>
 #include <string>
-#include <sys/wait.h>
+
 #include "rps.h"
 
-
 int main() {
-    uint64_t games;
-    std::cout << "Enter Game count:" << std::endl;
-    std::cin >> games;
+  uint64_t games;
+  std::cout << "Enter Game count:" << std::endl;
+  std::cin >> games;
 
-    imc::rps::RPS rps(games);
-    rps.play();
+  imc::rps::RPS rps(games);
+  rps.play();
 
-    return 0;
+  return 0;
 }

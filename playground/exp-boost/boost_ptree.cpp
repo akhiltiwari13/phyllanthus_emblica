@@ -5,14 +5,14 @@
 #include <iostream>
 #include <string>
 
-int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
+int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
   boost::property_tree::ptree pt;
 
   // ptree expects . as a separator for it's keys
   pt.put("home.quomptrade.Work", "5 files");
-  boost::property_tree::ptree &home = pt.get_child("home");
-  boost::property_tree::ptree &quompt = home.get_child("quomptrade");
-  boost::property_tree::ptree &work = quompt.get_child("Work");
+  boost::property_tree::ptree& home = pt.get_child("home");
+  boost::property_tree::ptree& quompt = home.get_child("quomptrade");
+  boost::property_tree::ptree& work = quompt.get_child("Work");
 
   std::cout << work.get_value<std::string>() << std::endl;
   // std::cout << quompt.get_value<std::string>() << std::endl;

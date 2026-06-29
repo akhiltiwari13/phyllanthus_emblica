@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+
 #include <nlohmann/json.hpp>
 #include <ostream>
 
@@ -26,12 +27,12 @@ union eventVal {
 };
 
 struct campaign {
-  unsigned long timestamp; //@todo- may need to change to chrono::time
+  unsigned long timestamp;  //@todo- may need to change to chrono::time
   unsigned int id;
   std::string event;
-  eventVal val; // union for value type.
+  eventVal val;  // union for value type.
 };
-std::ostream &operator<<(std::ostream &out, const campaign &cmpgn) {
+std::ostream& operator<<(std::ostream& out, const campaign& cmpgn) {
   return out << cmpgn.timestamp << " | " << cmpgn.id << " | " << cmpgn.event
              << " | ";
 }
@@ -39,18 +40,18 @@ std::ostream &operator<<(std::ostream &out, const campaign &cmpgn) {
 void parseCampaignInfo(nlohmann::json j) {}
 
 class AdCapProcessor {
-public:
+ public:
   void ParsePacket(nlohmann::json ad_pkt) {
     campaign cmpgn;
     from_json(ad_pkt, cmpgn);
     std::cout << cmpgn << std::endl;
   }
 
-private:
+ private:
   /* parse campaign data and update the budget map. */
   std::unordered_map<std::string, unsigned long> bugdet_map;
 
-  void from_json(const nlohmann::json &j, campaign &cmpgn) {
+  void from_json(const nlohmann::json& j, campaign& cmpgn) {
     j.at("timeStamp").get_to(cmpgn.timestamp);
     j.at("id").get_to(cmpgn.id);
     j.at("eventType").get_to(cmpgn.event);
@@ -73,7 +74,7 @@ int main() {
   for (auto i : j) {
     /* std::cout << "element" << std::endl; */
     /* std::cout << std::setw(4) << i << std::endl; */
-      capProcessor.ParsePacket(i);
+    capProcessor.ParsePacket(i);
   }
   return 0;
 }

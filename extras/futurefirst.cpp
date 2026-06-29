@@ -38,12 +38,12 @@ int i44 = 44;
 
 std::string Encode(std::string str) {
   for (auto c : str) {
-    if (c >= 'A' && c <= 'Z') // upper case
+    if (c >= 'A' && c <= 'Z')  // upper case
     {
-      c = 'A' + ((c - 'A' + 13) % 26); //@todo
-    } else if (c >= 'a' && c <= 'z')   // lower cased
+      c = 'A' + ((c - 'A' + 13) % 26);  //@todo
+    } else if (c >= 'a' && c <= 'z')    // lower cased
     {
-      c = 'a' + ((c - 'a' + 13) % 26); //@todo
+      c = 'a' + ((c - 'a' + 13) % 26);  //@todo
     }
   }
 
@@ -67,7 +67,7 @@ std::string Encode(std::string str) {
 // Upcased string is:  ABCDEF TUVWXYZ
 //
 
-std::string ToUpper(const std::string &str) {
+std::string ToUpper(const std::string& str) {
   std::string rslt{};
 
   for (auto c : str) {
@@ -82,9 +82,9 @@ std::string ToUpper(const std::string &str) {
   return rslt;
 }
 
-void Func(int &pi) { pi = i44; }
+void Func(int& pi) { pi = i44; }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   int i = 11;
   Func(i);
   printf("After Func: %d\n", i);
