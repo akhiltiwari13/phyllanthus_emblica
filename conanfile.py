@@ -21,6 +21,7 @@ class PhyllanthusEmblicaRecepie(ConanFile):
 
     def requirements(self):
         self.requires("boost/[~1.88]")
+        self.requires("asio/[~1.38]")
         self.requires("yaml-cpp/[>=0.8.0]")
         self.requires("fmt/[~12.0]", override=True, force=True)
         self.requires("nlohmann_json/[>=3.12.0]")  # used by infra::events

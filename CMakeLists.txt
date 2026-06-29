@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.30 )
+cmake_minimum_required(VERSION 4.00 )
 
 project(phyllanthus-emblica VERSION 0.1 LANGUAGES CXX)
 
@@ -29,6 +29,46 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ${ipo_supported})
 add_subdirectory(interview-experience)
 add_subdirectory(playground)
 add_subdirectory(extras)
+
+# ---- clang-format: on-demand 'format' / 'format-check' targets ----
+# Deliberately NOT part of the default (ALL) build: formatting mutates source
+# files, which would make `cmake --build` non-reproducible and race under -j.
+# Invoke explicitly:  cmake --build <dir> --target format      (rewrites files)
+#                     cmake --build <dir> --target format-check (CI, read-only)
+find_program(CLANG_FORMAT_EXE NAMES clang-format clang-format-22 clang-format-21)
+if(CLANG_FORMAT_EXE)
+	file(GLOB_RECURSE PE_FORMAT_SOURCES CONFIGURE_DEPENDS
+		${CMAKE_SOURCE_DIR}/interview-experience/*.cpp
+		${CMAKE_SOURCE_DIR}/interview-experience/*.hpp
+		${CMAKE_SOURCE_DIR}/interview-experience/*.h
+		${CMAKE_SOURCE_DIR}/playground/*.cpp
+		${CMAKE_SOURCE_DIR}/playground/*.hpp
+		${CMAKE_SOURCE_DIR}/playground/*.h
+		${CMAKE_SOURCE_DIR}/extras/*.cpp
+		${CMAKE_SOURCE_DIR}/extras/*.hpp
+		${CMAKE_SOURCE_DIR}/extras/*.h
+		${CMAKE_SOURCE_DIR}/buinftech/*.cpp
+		${CMAKE_SOURCE_DIR}/buinftech/*.hpp
+		${CMAKE_SOURCE_DIR}/buinftech/*.h)
+	# Defensive: never format anything that leaks in from the build tree.
+	list(FILTER PE_FORMAT_SOURCES EXCLUDE REGEX "/build/")
+
+	add_custom_target(format
+		COMMAND ${CLANG_FORMAT_EXE} -i --style=file ${PE_FORMAT_SOURCES}
+		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+		COMMENT "Formatting all sources in place with clang-format (Google style)"
+		VERBATIM)
+
+	add_custom_target(format-check
+		COMMAND ${CLANG_FORMAT_EXE} --dry-run --Werror --style=file ${PE_FORMAT_SOURCES}
+		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+		COMMENT "Checking formatting with clang-format (no files modified)"
+		VERBATIM)
+
+	message(STATUS "clang-format: ${CLANG_FORMAT_EXE} -> targets 'format' / 'format-check' enabled")
+else()
+	message(STATUS "clang-format not found -> 'format' / 'format-check' targets disabled")
+endif()
 
 # better to move it ot a function.
 message("cpp features supported by the available compiler: \n")

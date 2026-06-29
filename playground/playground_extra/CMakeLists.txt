@@ -6,10 +6,10 @@
 # add_executable(vfunc virtual_funcs.cpp)
 # add_executable(vfunc virtual_funcs.cpp)
 
-set(THREADS_PREFER_PTHREAD_FLAG ON)
+# set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Tracy REQUIRED)
 find_package(Threads REQUIRED)
-find_package(Boost REQUIRED)
+find_package(asio REQUIRED)
 
 # add_executable(tracy_example tracy_example.cpp )
 # target_include_directories(tracy_example
@@ -24,11 +24,11 @@ find_package(Boost REQUIRED)
 # include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
 
 # Boost
-add_executable(boost_usage boost_usage.cpp)
-target_link_libraries(boost_usage PUBLIC boost::boost)
+# add_executable(boost_usage boost_usage.cpp)
+# target_link_libraries(boost_usage PUBLIC boost::boost)
 
-add_executable(boost_asio boost_asio.cpp)
-target_link_libraries(boost_asio PUBLIC boost::boost)
+# add_executable(boost_asio boost_asio.cpp)
+# target_link_libraries(boost_asio PUBLIC boost::boost)
 
 # Cap'n Proto
 # @TODO: has linking error Cap'n Proto.
@@ -82,3 +82,23 @@ target_link_libraries(boost_asio PUBLIC boost::boost)
 # find_package(yaml-cpp REQUIRED)
 # add_executable(yaml_usage yaml_usage.cpp)
 # target_link_libraries(yaml_usage PUBLIC yaml-cpp)
+#
+#
+#  # ASIO
+add_executable(asio-usage asio_usage.cpp)
+target_link_libraries(asio-usage asio::asio)
+
+add_executable(asio-asynctimers asio_asynctimers.cpp)
+target_link_libraries(asio-asynctimers asio::asio)
+
+add_executable(asio-syncasynctimer asio_syncasynctimer.cpp)
+target_link_libraries(asio-syncasynctimer asio::asio)
+
+add_executable(asio-comphandlerbind asio_comphandlerbind.cpp)
+target_link_libraries(asio-comphandlerbind asio::asio)
+
+add_executable(asio-comphandlerbindmt asio_comphandlerbindmt.cpp)
+target_link_libraries(asio-comphandlerbindmt asio::asio)
+
+add_executable(asio-01 asio_01.cpp)
+target_link_libraries(asio-01 asio::asio)

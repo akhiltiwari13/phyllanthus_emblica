@@ -1,5 +1,5 @@
 # Ogha-research's assignment
-A copy of the assignment can be found here: [assignment](../imgs/ogha/ogha_assignment.pdf)
+A copy of the assignment can be found here: [assignment](../../problems/ogha/ogha_assignment.pdf)
 
 ## Build Instructions
 ``` 

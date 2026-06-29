@@ -1,0 +1,15 @@
+# Phyllanthus Emblica — formatting config.
+#
+# Delegates to clang-format's built-in Google C++ style so it tracks the
+# upstream Google C++ Style Guide (https://google.github.io/styleguide/cppguide.html)
+# as the tool is updated, rather than freezing a hand-copied snapshot.
+#
+# Note: clang-format handles whitespace/layout only. Naming conventions from
+# AGENTS.md (member suffix_/_prefix, PascalCase types, etc.) are not enforced
+# here — that is clang-tidy's domain.
+---
+Language: Cpp
+BasedOnStyle: Google
+# Project builds with C++23; let clang-format parse the latest language features.
+Standard: Latest
+...

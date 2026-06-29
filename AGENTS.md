@@ -12,7 +12,7 @@ The codebase follows the [Google C++ Style Guide](https://google.github.io/style
 ### Requirements
 - CMake 3.30+
 - Conan 2.x (package manager)
-- GCC 15 (Linux/Fedora) or Clang 20 (macOS ARM)
+- GCC 15 (Linux), Clang 21 (Linux/omarchy), or Clang 20 (macOS ARM)
 - C++23 standard
 
 ### Dependencies (via Conan)
@@ -44,6 +44,8 @@ cmake --build build/Debug --target <target_name>
 ### Available Conan Profiles
 - `conan/conan-profiles/debug-fedora-x86-gcc` - Linux Debug (GCC 15)
 - `conan/conan-profiles/default-fedora-x86-gcc` - Linux Release (GCC 15)
+- `conan/conan-profiles/debug-omarchy-x86-gcc` - Linux/omarchy Debug (GCC 15, libstdc++)
+- `conan/conan-profiles/debug-omarchy-x86-clang` - Linux/omarchy Debug (Clang 21, libc++)
 - `conan/conan-profiles/debug-mac-arm` - macOS ARM Debug (Clang 20)
 - `conan/conan-profiles/default-mac-arm` - macOS ARM Release
 
@@ -81,9 +83,29 @@ int main() {
 
 Google Test is available via Conan but not widely used yet.
 
-## Linting
+## Linting & Formatting
 
-No `.clang-format` or `.clang-tidy` files exist. Linting relies on strict compiler warnings:
+A root `.clang-format` enforces formatting via clang-format's built-in **Google** style
+(`BasedOnStyle: Google`, `Standard: Latest`). Format a file before committing:
+
+```bash
+clang-format -i path/to/file.cpp        # format in place
+clang-format --dry-run --Werror file.cpp # check without writing
+```
+
+The root `CMakeLists.txt` also exposes on-demand targets (auto-enabled when
+`clang-format` is on PATH). They are intentionally **not** part of the default
+build — formatting mutates sources, so it must be invoked explicitly:
+
+```bash
+cmake --build build/Debug --target format        # rewrite all sources in place
+cmake --build build/Debug --target format-check   # CI check, modifies nothing
+```
+
+clang-format covers whitespace/layout only; the naming conventions below are not
+enforced by tooling (no `.clang-tidy` yet).
+
+On top of formatting, linting relies on strict compiler warnings:
 
 ```cmake
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Werror")
@@ -202,6 +224,9 @@ phyllanthus_emblica/
 │   │   └── *.cpp, *.h
 ├── playground/                 # Experimentation area
 ├── extras/                     # Additional code snippets
+├── buinftech/                  # Standalone experiment (own conanfile.py)
+├── docs/                       # Session/notes
+├── osx_inc/                    # macOS include helpers
 └── problems/                   # Problem statements/images
 ```
 
