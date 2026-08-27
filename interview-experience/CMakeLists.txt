@@ -16,6 +16,7 @@ add_subdirectory(greenland_investment_mgmt)
 # add_subdirectory(alphagrep) add_subdirectory(lhft)
 # add_subdirectory(amazon_embedded)
 add_subdirectory(miscellaneous)
+add_subdirectory(picodotnet)
 # add_executable(greenland circ_buff.cpp)
 
 # @TODO: 1-> review goldman_sachs, trc, sc, imc, jpmc 1-> solve jump, lhft,
