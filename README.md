@@ -76,6 +76,24 @@
 - ### [Greenland Investment management's](https://www.lhft.io/) introductory assignment problems  
     > Collection of assignment problems. [solutions](interview-experience/greenland_investment_mgmt/)
 
+- ### [Trading Technologies](https://www.tradingtechnologies.com/)
+    > Codility-style harness (`#ifndef RunTests`) plus MCQs, for low-latency C++ roles.
+    See [the write-up](interview-experience/trading_technologies/README.md) for the test
+    format and per-attempt notes.
+    1. [chain link](interview-experience/trading_technologies/attempt_2021/chain_link.cpp) —
+       which side of a doubly-linked chain is longer
+    2. [friend graph](interview-experience/trading_technologies/attempt_2021/friend_graph.cpp) —
+       connectivity over a friendship graph
+
+## Interview prep
+> [`prep/`](prep/) holds company-agnostic preparation material, reusable across tests:
+> a [low-latency C++ MCQ sheet](prep/mcq/low_latency_cpp.md), a
+> [timed-question template](prep/templates/q00_template.cpp) matching the Codility harness,
+> and [practice problems](prep/practice/) that each build twice — `practice_<name>` is the
+> stub you solve against the clock, `solution_<name>` the worked reference running the same
+> tests. Covers order book, A/B feed arbitration, object pool, timer wheel, fixed-point
+> price and LRU cache.
+
 ## Additional solutions:
 > The following companies/assignments also have solutions under `interview-experience/`:
 - [aargo_trade](interview-experience/aargo_trade/main.cpp)
@@ -91,7 +109,6 @@
 - [millenium](interview-experience/millenium/README.md)
 - [qnance](interview-experience/qnance/README.md)
 - [standard_chartered](interview-experience/standard_chartered/solve.cpp)
-- [trading_technologies](interview-experience/trading_technologies/main.cpp)
 - [turing](interview-experience/turing/open_cv_basic.py)
 - [worldquant](interview-experience/worldquant/target1.cpp)
 

@@ -29,6 +29,7 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ${ipo_supported})
 add_subdirectory(interview-experience)
 add_subdirectory(playground)
 add_subdirectory(extras)
+add_subdirectory(prep)
 
 # ---- clang-format: on-demand 'format' / 'format-check' targets ----
 # Deliberately NOT part of the default (ALL) build: formatting mutates source
@@ -47,6 +48,9 @@ if(CLANG_FORMAT_EXE)
 		${CMAKE_SOURCE_DIR}/extras/*.cpp
 		${CMAKE_SOURCE_DIR}/extras/*.hpp
 		${CMAKE_SOURCE_DIR}/extras/*.h
+		${CMAKE_SOURCE_DIR}/prep/*.cpp
+		${CMAKE_SOURCE_DIR}/prep/*.hpp
+		${CMAKE_SOURCE_DIR}/prep/*.h
 		${CMAKE_SOURCE_DIR}/buinftech/*.cpp
 		${CMAKE_SOURCE_DIR}/buinftech/*.hpp
 		${CMAKE_SOURCE_DIR}/buinftech/*.h)

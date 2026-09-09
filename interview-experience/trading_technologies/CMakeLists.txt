@@ -1,2 +1,2 @@
-add_executable(prog1 main.cpp)
-add_executable(prog2 friend.cpp)
+add_subdirectory(attempt_2021)
+add_subdirectory(tt_guj_2026)

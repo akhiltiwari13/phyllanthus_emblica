@@ -224,11 +224,22 @@ phyllanthus_emblica/
 │   │   └── *.cpp, *.h
 ├── playground/                 # Experimentation area
 ├── extras/                     # Additional code snippets
+├── prep/                       # Interview prep: MCQ sheets, question template,
+│                               #   practice problems + reference solutions
 ├── buinftech/                  # Standalone experiment (own conanfile.py)
 ├── docs/                       # Session/notes
 ├── osx_inc/                    # macOS include helpers
 └── problems/                   # Problem statements/images
 ```
+
+## Interview prep material
+
+`prep/` is company-agnostic and reusable across tests; a specific test's questions belong
+under `interview-experience/<company>/`. Each practice problem builds twice —
+`practice_<name>` (stub, compiles clean and prints `TESTS FAILED.` until solved) and
+`solution_<name>` (worked reference) — both running the same test block. When adding one,
+check `interview-experience/` and `extras/` first: ring buffers, SPSC queues, market-data
+parsers, rate limiters, schedulers and graph traversal are already covered.
 
 ## Adding New Solutions
 
