@@ -3,3 +3,4 @@
 # live under interview-experience/<company>/, not here.
 add_subdirectory(practice)
 add_subdirectory(templates)
+add_subdirectory(from-scott-meyers-talks)
