@@ -7,7 +7,7 @@ message(STATUS "***pre-build*** ${PROJECT_NAME}. building with cmake version: ${
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 	message(STATUS "Building on Linux")
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-	message(STATUS "Building on Mac")
+	message(STATUS "Building on Mac (only arm based macs are supported)")
 else()
 	message(STATUS "Building on an unsupported/untested platform.")
 endif()
@@ -16,15 +16,26 @@ if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
 	message(FATAL_ERROR "In-source builds are not allowed")
 endif()
 
+
+# add_definitions(-std=c++11) //old way of setting standard.
 set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON) # if the compiler is of older version and cannot support cpp 23 feature build. This will indicate a cmake errro at this step.
-set(CMAKE_EXTENSIONS OFF) # favour portability over minior compiler specific feature gains.
+# older compilers not supporting cpp 23 would throw cmake error.
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# disable compiler specific features/extensions
+set(CMAKE_EXTENSIONS OFF)
+
+# exhaustive warning flags
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Werror")
+
+# generates compile_commands.json file (irrespective of the build type).
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-include(CheckIPOSupported)
-check_ipo_supported(RESULT ipo_supported)
-set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ${ipo_supported})
+
+# turn on link time optimization
+# include(CheckIPOSupported)
+# check_ipo_supported(RESULT ipo_supported)
+# set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ${ipo_supported})
 
 add_subdirectory(interview-experience)
 add_subdirectory(playground)

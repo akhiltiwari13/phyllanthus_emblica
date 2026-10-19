@@ -31,8 +31,23 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <functional>
 #include <iostream>
+#include <map>
 #include <optional>
+#include <queue>
+#include <unordered_map>
+#include <vector>
+
+// Follow-up questions an interviewer may ask
+//
+// - Sorted vector instead of map? It's better for the cache, and cheap when
+// there are few levels and most activity is near the best
+//   price.
+// - Prices limited to a fixed range? Use an array indexed by tick, plus a
+// cached best index, and every operation becomes O(1).
+// - Fewer allocations? Use a custom allocator or reuse nodes for the maps on
+// the hot path.
 
 enum class Side { kBuy, kSell };
 
@@ -40,41 +55,155 @@ struct Quote {
   std::int64_t price = 0;
   std::uint64_t qty = 0;
 
+  // @ques: what does = default does?
+  // @ques: can you explain why this friend function in inside the struct?
+  // shouldn't the friend function be outside the class it's a friend of? please
+  // clarify?
   friend bool operator==(const Quote&, const Quote&) = default;
+  // friend bool operator==(const Quote& q1, const Quote& q2) {
+  //   return (q1.price == q2.price) && (q1.qty == q2.qty);
+  // }
+};
+
+// represent an order
+struct Order {
+  uint64_t id{};
+  Side side{};
+  Quote quote{};
 };
 
 class OrderBook {
  public:
   bool add(std::uint64_t id, Side side, std::int64_t price, std::uint64_t qty) {
-    (void)id, (void)side, (void)price, (void)qty;
-    return false;  // TODO
+    // (void)id, (void)side, (void)price,
+    //     (void)qty;  // casting it to make it compile?
+
+    if (!qty) {
+      // std::cout << "invalid  quantity" << std::endl;
+      return false;
+    }
+    if (_orders.contains(id)) {
+      // std::cout << "order exists" << std::endl;
+      return false;
+    } else {
+      if (side == Side::kBuy) {
+        _bids[price] += qty;
+      } else {
+        _asks[price] += qty;
+      }
+      _orders[id] = {id, side, {price, qty}};
+    }
+    return true;
   }
 
   bool cancel(std::uint64_t id) {
-    (void)id;
-    return false;  // TODO
+    if (!_orders.contains(id)) {
+      // std::cout << "order doesn't exist!" << std::endl;
+      return false;
+    }
+    auto& ord = _orders[id];
+    if (ord.side == Side::kBuy) {
+      _bids[ord.quote.price] -= ord.quote.qty;
+      if (!_bids[ord.quote.price]) _bids.erase(ord.quote.price);
+    } else {
+      _asks[ord.quote.price] -= ord.quote.qty;
+      if (!_asks[ord.quote.price]) _asks.erase(ord.quote.price);
+    }
+    _orders.erase(id);
+    return true;
   }
 
   bool reduce(std::uint64_t id, std::uint64_t qty) {
-    (void)id, (void)qty;
-    return false;  // TODO
+    // (void)id, (void)qty;
+    if (qty <= 0) return false;
+    if (!_orders.contains(id)) return false;
+    if (_orders[id].quote.qty < qty) return false;
+    auto& ord = _orders[id];
+    if (ord.side == Side::kBuy) {
+      _bids[ord.quote.price] -= qty;
+      // if (!_bids[ord.quote.price]) {
+      //   _bids.erase(ord.quote.price);
+      //   _orders.erase(id);
+      // }
+    } else {
+      _asks[ord.quote.price] -= qty;
+      // if (!_asks[ord.quote.price]) {
+      //   _asks.erase(ord.quote.price);
+      //   _orders.erase(id);
+      // }
+    }
+    _orders[id].quote.qty -=
+        qty;  // reduce must update the quantity in order lists as well!
+    if (!_orders[id].quote.qty) _orders.erase(id);
+
+    return true;
   }
 
-  std::optional<Quote> bestBid() const { return std::nullopt; }  // TODO
+  std::optional<Quote> bestBid() const {
+    if (!_bids.empty()) {
+      return std::optional<Quote>{
+          {_bids.rbegin()->first, _bids.rbegin()->second}};
+    }
+    return std::nullopt;
+  }
 
-  std::optional<Quote> bestAsk() const { return std::nullopt; }  // TODO
+  std::optional<Quote> bestAsk() const {
+    if (!_asks.empty()) {
+      return std::optional<Quote>{
+          {_asks.begin()->first, _asks.begin()->second}};
+    }
+    return std::nullopt;
+  }
 
-  std::optional<std::int64_t> spread() const { return std::nullopt; }  // TODO
+  std::optional<std::int64_t> spread() const {
+    if (!_asks.empty() && !_bids.empty()) {
+      return _asks.begin()->first - _bids.rbegin()->first;
+    }  // TODO
+    return std::nullopt;
+  }
 
+  // .at() throws std::out_of_range for a
+  // missing key, and a missing level should give 0. Use find and return 0
+  // when nothing is found.
   std::uint64_t qtyAt(Side side, std::int64_t price) const {
-    (void)side, (void)price;
+    // (void)side, (void)price;
+    if (side == Side::kBuy) {
+      if (_bids.find(price) != _bids.end()) {
+        return _bids.at(price);
+      }
+    } else {
+      if (_asks.find(price) != _asks.end()) {
+        return _asks.at(price);
+      }
+    }
     return 0;  // TODO
   }
 
-  std::size_t restingOrders() const { return 0; }  // TODO
+  std::size_t restingOrders() const { return _orders.size(); }
+  //
+ private:
+  // The priority_queue won't compile. The template is priority_queue<T,
+  // Container, Compare>, and your second argument is a comparator where
+  // the container goes. The comparators are also swapped: std::less gives a
+  // max-heap, which suits bids, and std::greater gives a min-heap, which
+  // suits asks.
+
+  // @ask: there is a commom orderbook implementation using a
+  // heap/priority_queue.. how did that go?
+
+  // std::priority_queue<Quote, std::greater> bids;
+  // std::priority_queue<Quote, std::less> asks;
+  //
+  // std::map<int, std::vector<Order>> _bids, _asks;  //<price-level,
+  // order_list>
+  std::map<int64_t, uint64_t> _bids, _asks;  //<price-level, quantity>
+  std::unordered_map<uint64_t, Order>
+      _orders;  // directly point my order to it's
+                // location in the _bids and _asks
 };
 
-// ------------------------------------------------------------------- TESTS --
+// ------------------------------------------------------------------- TESTS
+// --
 
 namespace {
 

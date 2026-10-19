@@ -24,7 +24,7 @@ class Sync {
   std::queue<int> q_;
   std::mutex m_;
   std::condition_variable c_;
-  bool flag{false};  // test its requirement.
+  [[maybe_unused]] bool flag{false};  // test its requirement.
 
  public:
   void push(int val) {
@@ -49,7 +49,7 @@ class Sync {
 };
 
 void producer(Sync& sq, int id, int count) {
-  for (int idx = id; id <= count; idx++) {
+  for (int idx = id; idx <= count; idx++) {
     sq.push(id * 3 + idx);
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
   }
